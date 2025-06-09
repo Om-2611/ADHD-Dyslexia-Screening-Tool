@@ -6,16 +6,15 @@ import Button from '../../components/ui/Button';
 import { 
   Calendar, 
   Clock, 
-  Download, 
-  LogOut, 
-  User as UserIcon, 
-  Edit, 
-  Save, 
-  FileText
+  FileText,
+  LogOut,
+  User as UserIcon,
+  Edit,
+  Save
 } from 'lucide-react';
-import { db } from '../../config/firebase.ts';
-import { collection, query, where, orderBy, getDocs, doc, updateDoc, getDoc, setDoc } from 'firebase/firestore';
-import { generateTestPDF } from '../../utils/pdfGenerator'; // Import the PDF generator
+import { db } from '../../config/firebase';
+import { collection, query, where, orderBy, getDocs, doc, getDoc, setDoc } from 'firebase/firestore';
+import { generateTestPDF } from '../../utils/pdfGenerator';
 
 interface TestResult {
   id: string;
@@ -23,7 +22,7 @@ interface TestResult {
   testId: string;
   testTitle: string;
   duration: number;
-  timestamp: any; // Firestore Timestamp
+  timestamp: any;
   answers: Record<string, {
     value: number;
     text: string;
@@ -31,8 +30,8 @@ interface TestResult {
     subcategory: string;
     questionText: string;
   }>;
-  completedAt?: Date; // Added for better date handling
-  userId: string; // Added userId based on the error
+  completedAt?: Date;
+  userId: string;
 }
 
 interface UserProfileData {
@@ -40,7 +39,7 @@ interface UserProfileData {
   email: string;
   gender?: string;
   age?: number;
-  createdAt?: Date; // Assuming this is available from Firebase Auth or UserData
+  createdAt?: Date;
 }
 
 const UserProfile: React.FC = () => {
@@ -64,7 +63,6 @@ const UserProfile: React.FC = () => {
       }
 
       try {
-        // Fetch user profile data from Firestore
         const userDocRef = doc(db, 'users', currentUser.uid);
         const userDocSnap = await getDoc(userDocRef);
         if (userDocSnap.exists()) {
@@ -76,7 +74,6 @@ const UserProfile: React.FC = () => {
             age: userData.age || undefined,
           }));
         } else {
-          // If user document doesn't exist, use current user's display name and email
           setUserProfile(prev => ({
             ...prev,
             displayName: currentUser.displayName || '',
@@ -85,7 +82,6 @@ const UserProfile: React.FC = () => {
           }));
         }
 
-        // Fetch test results
         const testResultsRef = collection(db, 'testResults');
         const q = query(
           testResultsRef,
@@ -101,9 +97,9 @@ const UserProfile: React.FC = () => {
           results.push({
             id: doc.id,
             ...data,
-            timestamp: data.timestamp, // Keep original timestamp
-            completedAt: data.timestamp?.toDate ? data.timestamp.toDate() : undefined, // Convert to Date object
-            userId: currentUser.uid, // Added userId based on the error
+            timestamp: data.timestamp,
+            completedAt: data.timestamp?.toDate ? data.timestamp.toDate() : undefined,
+            userId: currentUser.uid,
           } as TestResult);
         });
 
@@ -135,13 +131,12 @@ const UserProfile: React.FC = () => {
       const userDocRef = doc(db, 'users', currentUser.uid);
 
       await setDoc(userDocRef, {
-        displayName: userProfile.displayName || null, // Ensure null for empty string
-        gender: userProfile.gender || null, // Ensure null for empty string
-        age: userProfile.age || null,       // Ensure null for empty string/undefined
-        // Add other fields that should always exist or be updated
-        email: userProfile.email, // Ensure email is also stored/updated if not already
-        uid: currentUser.uid, // Ensure UID is stored
-      }, { merge: true }); // Use merge: true to create or update without overwriting
+        displayName: userProfile.displayName || null,
+        gender: userProfile.gender || null,
+        age: userProfile.age || null,
+        email: userProfile.email,
+        uid: currentUser.uid,
+      }, { merge: true });
 
       setIsEditingPersonalDetails(false);
     } catch (error: any) {
@@ -171,18 +166,18 @@ const UserProfile: React.FC = () => {
     if (testResult.testType === 'adhd') {
       if (totalScore >= 6) {
         resultText = 'Positive';
-        resultColor = 'bg-red-100 text-red-800'; // Indicating positive for ADHD (higher risk)
+        resultColor = 'bg-red-100 text-red-800';
       } else {
         resultText = 'Negative';
-        resultColor = 'bg-green-100 text-green-800'; // Indicating negative for ADHD (lower risk)
+        resultColor = 'bg-green-100 text-green-800';
       }
     } else if (testResult.testType === 'dyslexia') {
       if (totalScore >= 10) {
         resultText = 'Positive';
-        resultColor = 'bg-red-100 text-red-800'; // Indicating positive for Dyslexia (higher risk)
+        resultColor = 'bg-red-100 text-red-800';
       } else {
         resultText = 'Negative';
-        resultColor = 'bg-green-100 text-green-800'; // Indicating negative for Dyslexia (lower risk)
+        resultColor = 'bg-green-100 text-green-800';
       }
     } else {
       resultText = 'N/A';
@@ -226,7 +221,6 @@ const UserProfile: React.FC = () => {
         </div>
       )}
 
-      {/* User Info Header */}
       <Card className="mb-8">
         <div className="flex items-center justify-between p-6">
           <div className="flex items-center space-x-4">
@@ -251,138 +245,50 @@ const UserProfile: React.FC = () => {
           </Button>
         </div>
       </Card>
-      
-      {/* Personal Details Section */}
+
+      {/* Test History */}
       <Card>
-        <h2 className="text-xl font-bold text-gray-900 p-6 border-b">Personal Details</h2>
-        <div className="p-6 space-y-4">
-          <div className="flex items-center justify-between">
-            <label className="block text-sm font-medium text-gray-700">Display Name:</label>
-            {isEditingPersonalDetails ? (
-              <input
-                type="text"
-                className="mt-1 block w-2/3 border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
-                value={userProfile.displayName}
-                onChange={(e) => setUserProfile(prev => ({ ...prev, displayName: e.target.value }))}
-              />
-            ) : (
-              <p className="text-gray-900 w-2/3">{userProfile.displayName || 'N/A'}</p>
-            )}
-          </div>
-          
-          <div className="flex items-center justify-between">
-            <label className="block text-sm font-medium text-gray-700">Gender:</label>
-            {isEditingPersonalDetails ? (
-              <select
-                className="mt-1 block w-2/3 pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm rounded-md"
-                value={userProfile.gender || ''}
-                onChange={(e) => setUserProfile(prev => ({ ...prev, gender: e.target.value }))}
-              >
-                <option value="">Select Gender</option>
-                <option value="male">Male</option>
-                <option value="female">Female</option>
-                <option value="other">Other</option>
-                <option value="prefer_not_to_say">Prefer not to say</option>
-              </select>
-            ) : (
-              <p className="text-gray-900 w-2/3">{userProfile.gender || 'N/A'}</p>
-            )}
-          </div>
-
-          <div className="flex items-center justify-between">
-            <label className="block text-sm font-medium text-gray-700">Age:</label>
-            {isEditingPersonalDetails ? (
-              <input
-                type="number"
-                className="mt-1 block w-2/3 border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
-                value={userProfile.age || ''}
-                onChange={(e) => setUserProfile(prev => ({ ...prev, age: e.target.value ? parseInt(e.target.value) : undefined }))}
-              />
-            ) : (
-              <p className="text-gray-900 w-2/3">{userProfile.age || 'N/A'}</p>
-            )}
-          </div>
-
-          <div className="pt-4 flex justify-end">
-            {isEditingPersonalDetails ? (
-              <Button 
-                onClick={handleUpdatePersonalDetails} 
-                className="flex items-center space-x-2 bg-blue-600 hover:bg-blue-700 text-white"
-              >
-                <Save className="h-4 w-4" />
-                <span>Save Changes</span>
-              </Button>
-            ) : (
-              <Button 
-                onClick={() => setIsEditingPersonalDetails(true)} 
-                variant="outline"
-                className="flex items-center space-x-2 text-blue-600 hover:text-blue-700 hover:bg-blue-50"
-              >
-                <Edit className="h-4 w-4" />
-                <span>Edit Details</span>
-              </Button>
-            )}
-          </div>
-        </div>
-      </Card>
-
-      {/* Test History Section */}
-      <Card>
-        <h2 className="text-xl font-bold text-gray-900 p-6 border-b">Your Test History</h2>
         <div className="p-6">
-          {!testResults.length ? (
-            <p className="text-gray-500">You have not taken any tests yet.</p>
+          <h2 className="text-xl font-semibold mb-4">Test History</h2>
+          {testResults.length === 0 ? (
+            <p className="text-gray-500">No test results found.</p>
           ) : (
             <div className="space-y-4">
-              {testResults.map((test) => (
-                <div 
-                  key={`${test.id}-${test.timestamp?.toDate()?.getTime() || Date.now()}`} 
-                  className="bg-gray-50 rounded-lg p-4 text-sm"
-                >
-                  <div className="flex justify-between items-start">
-                    <div>
-                      <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${
-                        test.testType === 'adhd' 
-                          ? 'bg-purple-100 text-purple-800' 
-                          : 'bg-blue-100 text-blue-800'
-                      }`}>
-                        {((test.testType || 'unknown')).toUpperCase()}
-                      </span>
-                      <div className="mt-1">
-                        <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${getRiskLevel(test).color}`}>
-                          {getRiskLevel(test).text}
+              {testResults.map((test) => {
+                const { text: resultText, color: resultColor } = getRiskLevel(test);
+                return (
+                  <div key={test.id} className="border rounded-lg p-4">
+                    <div className="flex justify-between items-start">
+                      <div>
+                        <h3 className="font-medium">{test.testTitle}</h3>
+                        <div className="flex items-center space-x-4 mt-2 text-sm text-gray-600">
+                          <div className="flex items-center">
+                            <Calendar className="h-4 w-4 mr-1" />
+                            {test.completedAt?.toLocaleDateString()}
+                          </div>
+                          <div className="flex items-center">
+                            <Clock className="h-4 w-4 mr-1" />
+                            {test.duration} minutes
+                          </div>
+                        </div>
+                      </div>
+                      <div className="flex items-center space-x-2">
+                        <span className={`px-2 py-1 rounded-full text-sm ${resultColor}`}>
+                          {resultText}
                         </span>
+                        <Button
+                          onClick={() => handleDownloadPDF(test, userProfile)}
+                          variant="outline"
+                          className="flex items-center space-x-1"
+                        >
+                          <FileText className="h-4 w-4" />
+                          <span>PDF</span>
+                        </Button>
                       </div>
-                      {/* Display category, subcategory, and result */}
-                      <div className="mt-2 text-gray-600">
-                        <p className="text-xs">
-                          {test.answers && Object.values(test.answers)[0]?.subcategory ? 
-                            `${Object.values(test.answers)[0].subcategory.replace(/_/g, ' ').replace(/^[a-z]/, (char: string) => char.toUpperCase())} ${test.testType.toUpperCase()} - ${getRiskLevel(test).text}`
-                            : `${test.testType.toUpperCase()} - ${getRiskLevel(test).text}`
-                          }
-                        </p>
-                      </div>
-                    </div>
-                    <div className="text-right text-gray-500">
-                      <div className="flex items-center">
-                        <Calendar className="h-4 w-4 mr-1" />
-                        {test.completedAt?.toLocaleDateString('en-GB') ?? 'N/A'}
-                      </div>
-                      <div className="flex items-center mt-1">
-                        <Clock className="h-4 w-4 mr-1" />
-                        {(test.duration ? (test.duration / 60).toFixed(2) : 'N/A')} minutes
-                      </div>
-                      <button
-                        onClick={() => handleDownloadPDF(test, userProfile)}
-                        className="mt-2 text-blue-600 hover:text-blue-800"
-                        title="Download PDF Report"
-                      >
-                        <FileText className="h-5 w-5" />
-                      </button>
                     </div>
                   </div>
-                </div>
-              ))}
+                );
+              })}
             </div>
           )}
         </div>
