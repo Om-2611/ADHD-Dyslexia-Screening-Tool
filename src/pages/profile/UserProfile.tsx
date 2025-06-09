@@ -121,26 +121,6 @@ const UserProfile: React.FC = () => {
     }
   };
 
-  const handleUpdatePersonalDetails = async () => {
-    if (!currentUser) return;
-    setPersonalDetailsError(null);
-    try {
-      const userDocRef = doc(db, 'users', currentUser.uid);
-
-      await setDoc(userDocRef, {
-        displayName: userProfile.displayName || null,
-        gender: userProfile.gender || null,
-        age: userProfile.age || null,
-        email: userProfile.email,
-        uid: currentUser.uid,
-      }, { merge: true });
-
-    } catch (error: any) {
-      console.error('Error updating personal details:', error);
-      setPersonalDetailsError(`Failed to update personal details. Please try again. Error: ${error.message || error}`);
-    }
-  };
-
   const getTestScore = (testResult: TestResult) => {
     let totalScore = 0;
     if (testResult?.answers) {
