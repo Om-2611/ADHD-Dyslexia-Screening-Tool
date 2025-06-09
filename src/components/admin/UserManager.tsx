@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { getAllUsersWithTestHistory, UserData, TestResult } from '../../services/firebase';
 import Card from '../ui/Card';
-import { Search, Calendar, Clock, Download, Filter, FileText } from 'lucide-react';
+import { Search, Calendar, Clock, Download, FileText } from 'lucide-react';
 import { generateTestPDF } from '../../utils/pdfGenerator';
 
 const UserManager: React.FC = () => {

@@ -125,7 +125,7 @@ export const generateTestResultPDF = (
     addText('Detailed Responses:', 14, true);
     yPosition += 2;
 
-    Object.entries(testResult.answers).forEach(([questionId, answer], index) => {
+    Object.entries(testResult.answers).forEach(([_, answer], index) => {
       // Question
       addWrappedText(`${index + 1}. ${answer.questionText}`, 11, true);
       
@@ -137,7 +137,7 @@ export const generateTestResultPDF = (
     });
   } else if (options.includeAnswers) {
     addText('Answer Summary:', 14, true);
-    Object.entries(testResult.answers).forEach(([questionId, answer], index) => {
+    Object.entries(testResult.answers).forEach(([_, answer], index) => {
       addText(`${index + 1}. ${answer.text} (Score: ${answer.value})`);
     });
   }
@@ -316,7 +316,7 @@ export const generateTestPDF = async (test: TestResult, user: UserData) => {
     y += 10;
     doc.setFontSize(10);
 
-    Object.entries(test.answers).forEach(([key, answer]) => {
+    Object.entries(test.answers).forEach(([_, answer]) => {
       if (y > doc.internal.pageSize.getHeight() - margin) {
         doc.addPage();
         y = margin;

@@ -52,7 +52,10 @@ export type ADHDSubcategory =
   | 'predominantly_hyperactive'
   | 'oppositional_defiant_disorder'
   | 'conduct_disorder'
-  | 'anxiety_disorder';
+  | 'anxiety_disorder'
+  | 'executive_function'
+  | 'social_skills'
+  | 'emotional_regulation';
 
 export type DyslexiaSubcategory = 
   | 'phonological_awareness'
@@ -109,6 +112,18 @@ export const ADHD_QUESTION_LIMITS = {
   },
   anxiety_disorder: {
     behavioral: 7,
+    performance: 8
+  },
+  executive_function: {
+    behavioral: 8,
+    performance: 8
+  },
+  social_skills: {
+    behavioral: 8,
+    performance: 8
+  },
+  emotional_regulation: {
+    behavioral: 8,
     performance: 8
   }
 } as const;
@@ -615,29 +630,21 @@ export const getAllTestResults = async (
 // Get a specific test result by ID
 export const getTestResultById = async (testId: string): Promise<TestResult | null> => {
   try {
-    const testRef = doc(db, 'testResults', testId);
-    const testDoc = await getDocs(query(collection(db, 'testResults'), where('__name__', '==', testId)));
-    
-    if (testDoc.empty) {
+    const testResultsRef = collection(db, 'testResults');
+    const q = query(testResultsRef, where('id', '==', testId));
+    const querySnapshot = await getDocs(q);
+
+    if (querySnapshot.empty) {
       return null;
     }
 
-    const data = testDoc.docs[0].data();
+    const doc = querySnapshot.docs[0];
     return {
-      id: testDoc.docs[0].id,
-      userId: data.userId,
-      testType: data.testType,
-      testId: data.testId,
-      testTitle: data.testTitle,
-      duration: data.duration,
-      answers: data.answers,
-      timestamp: data.timestamp,
-      score: data.score,
-      result: data.result,
-      completedAt: data.timestamp?.toDate()
+      ...doc.data(),
+      timestamp: doc.data().timestamp?.toDate()
     } as TestResult;
   } catch (error) {
-    console.error('Error fetching test result by ID:', error);
+    console.error('Error fetching test result:', error);
     throw error;
   }
 }; 

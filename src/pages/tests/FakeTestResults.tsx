@@ -174,7 +174,6 @@ const TestResults: React.FC = () => {
     try {
       // Create a canvas from the result content
       const canvas = await html2canvas(resultRef.current);
-      const imgData = canvas.toDataURL('image/png');
 
       // Create PDF
       const pdf = new jsPDF('p', 'mm', 'a4');
@@ -183,8 +182,6 @@ const TestResults: React.FC = () => {
       const imgWidth = canvas.width;
       const imgHeight = canvas.height;
       const ratio = Math.min(pdfWidth / imgWidth, pdfHeight / imgHeight);
-      const imgX = (pdfWidth - imgWidth * ratio) / 2;
-      const imgY = 30;
 
       // Add test information
       pdf.setFontSize(20);
@@ -220,7 +217,7 @@ const TestResults: React.FC = () => {
         pdf.text('Detailed Answers', pdfWidth / 2, 20, { align: 'center' });
         
         let yPosition = 40;
-        Object.entries(state.answers).forEach(([questionId, answer], index) => {
+        Object.entries(state.answers).forEach(([_, answer], index) => {
           if (yPosition > pdfHeight - 20) {
             pdf.addPage();
             yPosition = 20;
@@ -248,7 +245,6 @@ const TestResults: React.FC = () => {
       pdf.save(`test-result-${testType}-${testId}.pdf`);
     } catch (error) {
       console.error('Error generating PDF:', error);
-      alert('Error generating PDF. Please try again.');
     }
   };
 

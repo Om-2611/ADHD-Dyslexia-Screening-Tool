@@ -1,12 +1,12 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import Card from '../../components/ui/Card';
 import Button from '../../components/ui/Button';
-import { ArrowLeft, ArrowRight, Check } from 'lucide-react';
-import { ADHDSubcategory, getAllQuestions, Question } from '../../services/firebase';
-import { adhdCategories } from '../../data/adhdQuestions.ts';
+import { ArrowLeft, ArrowRight } from 'lucide-react';
+import { ADHDSubcategory } from '../../services/firebase';
+import { adhdCategories } from '../../data/adhdQuestions';
 import { dyslexiaCategories } from '@/data/dyslexiaQuestions';
-import { db } from '../../config/firebase.ts';
+import { db } from '../../config/firebase';
 import { useAuth } from '../../components/auth/AuthContext';
 import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
 import { updateUserTestCount } from '../../services/firebase';

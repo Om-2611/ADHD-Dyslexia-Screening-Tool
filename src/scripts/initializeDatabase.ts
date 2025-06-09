@@ -1,5 +1,6 @@
 import { initializeApp } from 'firebase/app';
-import { getFirestore, collection, addDoc, serverTimestamp } from 'firebase/firestore';
+import { getFirestore, collection, doc, setDoc, getDocs, query, where, deleteDoc, serverTimestamp, addDoc } from 'firebase/firestore';
+import { DEFAULT_BEHAVIORAL_OPTIONS } from '../services/firebase';
 
 // Initialize Firebase
 const firebaseConfig = {
@@ -13,21 +14,6 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
-
-const DEFAULT_BEHAVIORAL_OPTIONS = {
-  never: 0,
-  occasionally: 1,
-  often: 2,
-  very_often: 3
-};
-
-const DEFAULT_PERFORMANCE_OPTIONS = {
-  very_poor: 1,
-  poor: 2,
-  average: 3,
-  good: 4,
-  excellent: 5
-};
 
 const adhdQuestions = [
   {

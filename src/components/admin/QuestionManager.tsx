@@ -7,7 +7,6 @@ import {
   ADHDSubcategory,
   DyslexiaSubcategory,
   QuestionType,
-  ADHD_QUESTION_LIMITS,
   DEFAULT_BEHAVIORAL_OPTIONS,
   DEFAULT_PERFORMANCE_OPTIONS,
   BehavioralOptions,
@@ -28,22 +27,6 @@ interface NewQuestion {
   questionType: QuestionType;
   options: BehavioralOptions | PerformanceOptions;
 }
-
-const subcategoryLabels: Record<ADHDSubcategory | DyslexiaSubcategory, string> = {
-  // ADHD subcategories
-  predominantly_inattentive: 'Predominantly Inattentive',
-  predominantly_hyperactive: 'Predominantly Hyperactive',
-  oppositional_defiant_disorder: 'Oppositional Defiant Disorder (ODD)',
-  conduct_disorder: 'Conduct Disorder (CD)',
-  anxiety_disorder: 'Anxiety Disorder',
-  // Dyslexia subcategories
-  phonological_awareness: 'Phonological Awareness',
-  reading_fluency: 'Reading Fluency',
-  comprehension: 'Reading Comprehension',
-  spelling: 'Spelling',
-  writing_skills: 'Writing Skills',
-  visual_processing: 'Visual Processing'
-};
 
 const QuestionManager: React.FC<QuestionManagerProps> = ({ category }) => {
   const [questions, setQuestions] = useState<Question[]>([]);
