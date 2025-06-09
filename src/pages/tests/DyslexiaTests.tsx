@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import Card from '../../components/ui/Card';
 import { FileText, BookOpen, ArrowRight } from 'lucide-react';
 import Button from '../../components/ui/Button';
-import { dyslexiaCategories } from '../data/dyslexiaQuestions.js';
+import { dyslexiaCategories } from '../data/dyslexiaQuestions';
 
 const DyslexiaTests: React.FC = () => {
   const tests = [

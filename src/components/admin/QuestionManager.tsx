@@ -59,22 +59,12 @@ const QuestionManager: React.FC<QuestionManagerProps> = ({ category }) => {
     options: DEFAULT_BEHAVIORAL_OPTIONS
   });
 
-  // Remove duplicate declarations and keep only one implementation
-  // Remove duplicate declarations and keep only one implementation
-  // Remove duplicate declarations and use DEFAULT_PERFORMANCE_OPTIONS
-  // Remove duplicate declarations and use DEFAULT_PERFORMANCE_OPTIONS
   const handleQuestionTypeChange = (type: QuestionType) => {
     setSelectedQuestionType(type);
     setNewQuestion({
       ...newQuestion,
       questionType: type,
-      options: type === 'behavioral' ? DEFAULT_BEHAVIORAL_OPTIONS : {
-        1: 1,
-        2: 2,
-        3: 3,
-        4: 4,
-        5: 5
-      }
+      options: type === 'behavioral' ? DEFAULT_BEHAVIORAL_OPTIONS : DEFAULT_PERFORMANCE_OPTIONS
     });
   };
 
@@ -117,16 +107,6 @@ const QuestionManager: React.FC<QuestionManagerProps> = ({ category }) => {
       setError('Error deleting question. Please try again.');
       console.error('Error deleting question:', err);
     }
-  };
-
-  // Remove all other declarations and keep only this one
-  const handleQuestionTypeChange = (type: QuestionType) => {
-    setSelectedQuestionType(type);
-    setNewQuestion({
-      ...newQuestion,
-      questionType: type,
-      options: type === 'behavioral' ? DEFAULT_BEHAVIORAL_OPTIONS : DEFAULT_PERFORMANCE_OPTIONS
-    });
   };
 
   const handleSubcategoryChange = (value: string) => {

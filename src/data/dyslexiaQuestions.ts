@@ -1,10 +1,12 @@
-export const dyslexiaCategories = [
+import { QuestionCategory } from "../types/questionTypes";
+
+export const dyslexiaCategories: QuestionCategory[] = [
   {
     name: 'Basic Dyslexia Screening',
     questions: [
       {
         id: 'BDS-1',
-        text: 'Does your child struggle to learn the alphabet or recognize letters?',
+        text: 'Does your child struggle to learn the alphabet or recognize letters? hosp',
         subcategory: 'Basic Dyslexia Screening',
         options: [
           { text: 'no', score: 0 },
@@ -250,7 +252,7 @@ export const dyslexiaCategories = [
       },
       {
         id: 'CDS-2',
-        text: 'Difficulty understanding when listening, particularly jokes, stories, discussions and lectures.',
+        text: 'Problems with reading aloud fluently, accurately, and with good comprehension (e.g., slow, word-by-word reading).',
         subcategory: 'Comprehensive Dyslexia Assessment',
         type: 'general',
         options: [
@@ -263,7 +265,7 @@ export const dyslexiaCategories = [
       },
       {
         id: 'CDS-3',
-        text: 'Difficulty interpreting and filling out forms.',
+        text: 'Frequent misreading or mispronunciation of common words.',
         subcategory: 'Comprehensive Dyslexia Assessment',
         type: 'general',
         options: [
@@ -276,9 +278,9 @@ export const dyslexiaCategories = [
       },
       {
         id: 'CDS-4',
-        text: 'Difficulty understanding abstract ideas.',
+        text: 'Difficulty distinguishing between similar-looking letters (e.g., b/d, p/q) or words (e.g., was/saw, on/no).',
         subcategory: 'Comprehensive Dyslexia Assessment',
-        type: 'general',
+        type: 'visual_processing',
         options: [
           { text: 'no', score: 0 },
           { text: 'not often', score: 0 },
@@ -289,9 +291,9 @@ export const dyslexiaCategories = [
       },
       {
         id: 'CDS-5',
-        text: 'Difficulty remembering information from listening, e.g. taking messages in a phone conversation.',
+        text: 'Trouble with visual tracking while reading (e.g., skipping lines, losing place, rereading lines).',
         subcategory: 'Comprehensive Dyslexia Assessment',
-        type: 'general',
+        type: 'visual_processing',
         options: [
           { text: 'no', score: 0 },
           { text: 'not often', score: 0 },
@@ -302,9 +304,9 @@ export const dyslexiaCategories = [
       },
       {
         id: 'CDS-6',
-        text: 'Difficulty remembering information from reading, e.g. simple facts, names, dates, times, places, etc.',
+        text: 'Experience headaches, eye strain, or fatigue after short periods of reading.',
         subcategory: 'Comprehensive Dyslexia Assessment',
-        type: 'general',
+        type: 'visual_processing',
         options: [
           { text: 'no', score: 0 },
           { text: 'not often', score: 0 },
@@ -315,9 +317,9 @@ export const dyslexiaCategories = [
       },
       {
         id: 'CDS-7',
-        text: 'Difficulty remembering names of people, places, items, and times of events.',
+        text: 'Difficulty with phonological awareness, such as rhyming, segmenting words into sounds, or blending sounds.',
         subcategory: 'Comprehensive Dyslexia Assessment',
-        type: 'general',
+        type: 'phonological_processing',
         options: [
           { text: 'no', score: 0 },
           { text: 'not often', score: 0 },
@@ -328,9 +330,9 @@ export const dyslexiaCategories = [
       },
       {
         id: 'CDS-8',
-        text: 'Meaning is sometimes vague when speaking.',
+        text: 'Trouble recognizing common sound patterns in words (e.g., \'ch\', \'sh\', \'th\').',
         subcategory: 'Comprehensive Dyslexia Assessment',
-        type: 'general',
+        type: 'phonological_processing',
         options: [
           { text: 'no', score: 0 },
           { text: 'not often', score: 0 },
@@ -341,9 +343,9 @@ export const dyslexiaCategories = [
       },
       {
         id: 'CDS-9',
-        text: 'Difficulty summarising or making a point, i.e. tends to go round the subject.',
+        text: 'Difficulty with rapid naming of letters, numbers, or objects (e.g., taking too long to name items in a list).',
         subcategory: 'Comprehensive Dyslexia Assessment',
-        type: 'general',
+        type: 'phonological_processing',
         options: [
           { text: 'no', score: 0 },
           { text: 'not often', score: 0 },
@@ -354,9 +356,9 @@ export const dyslexiaCategories = [
       },
       {
         id: 'CDS-10',
-        text: 'Struggles when describing and explaining things in detail, e.g. stories or events.',
+        text: 'Consistent spelling errors, even with common words, or difficulty applying phonics rules.',
         subcategory: 'Comprehensive Dyslexia Assessment',
-        type: 'general',
+        type: 'spelling_and_writing',
         options: [
           { text: 'no', score: 0 },
           { text: 'not often', score: 0 },
@@ -367,9 +369,9 @@ export const dyslexiaCategories = [
       },
       {
         id: 'CDS-11',
-        text: 'Poor writing skills, e.g. inappropriate word choice, poor sentence construction, grammar, spelling, and punctuation.',
+        text: 'Problems with written expression, including organizing thoughts, sentence structure, and grammar.',
         subcategory: 'Comprehensive Dyslexia Assessment',
-        type: 'general',
+        type: 'spelling_and_writing',
         options: [
           { text: 'no', score: 0 },
           { text: 'not often', score: 0 },
@@ -380,9 +382,9 @@ export const dyslexiaCategories = [
       },
       {
         id: 'CDS-12',
-        text: 'Lacks spontaneity to questions and requests.',
+        text: 'Avoidance of writing tasks or excessive time spent on writing with limited output.',
         subcategory: 'Comprehensive Dyslexia Assessment',
-        type: 'general',
+        type: 'spelling_and_writing',
         options: [
           { text: 'no', score: 0 },
           { text: 'not often', score: 0 },
@@ -393,9 +395,9 @@ export const dyslexiaCategories = [
       },
       {
         id: 'CDS-13',
-        text: 'Difficulty learning other languages.',
+        text: 'Difficulty with mathematical word problems, sequencing, or understanding concepts related to time and order.',
         subcategory: 'Comprehensive Dyslexia Assessment',
-        type: 'general',
+        type: 'numerical_and_sequencing',
         options: [
           { text: 'no', score: 0 },
           { text: 'not often', score: 0 },
@@ -406,9 +408,9 @@ export const dyslexiaCategories = [
       },
       {
         id: 'CDS-14',
-        text: 'Slow with mathematical calculations or difficulty understanding mathematical ideas.',
+        text: 'Trouble remembering sequences (e.g., alphabet, numbers, days of the week, multiplication tables).',
         subcategory: 'Comprehensive Dyslexia Assessment',
-        type: 'general',
+        type: 'numerical_and_sequencing',
         options: [
           { text: 'no', score: 0 },
           { text: 'not often', score: 0 },
@@ -419,9 +421,9 @@ export const dyslexiaCategories = [
       },
       {
         id: 'CDS-15',
-        text: 'Short concentration span on tasks.',
+        text: 'Difficulty with directionality (left/right confusion) or reading maps and charts.',
         subcategory: 'Comprehensive Dyslexia Assessment',
-        type: 'general',
+        type: 'spatial_awareness',
         options: [
           { text: 'no', score: 0 },
           { text: 'not often', score: 0 },
@@ -432,9 +434,9 @@ export const dyslexiaCategories = [
       },
       {
         id: 'CDS-16',
-        text: 'Can concentrate only on one thing at a time,',
+        text: 'Clumsiness or poor coordination, difficulty with fine motor skills (e.g., tying shoes, buttoning).',
         subcategory: 'Comprehensive Dyslexia Assessment',
-        type: 'general',
+        type: 'motor_skills',
         options: [
           { text: 'no', score: 0 },
           { text: 'not often', score: 0 },
@@ -445,9 +447,9 @@ export const dyslexiaCategories = [
       },
       {
         id: 'CDS-17',
-        text: 'Daydreams.',
+        text: 'Difficulty with memory, particularly short-term or working memory (e.g., remembering instructions, lists).',
         subcategory: 'Comprehensive Dyslexia Assessment',
-        type: 'general',
+        type: 'memory',
         options: [
           { text: 'no', score: 0 },
           { text: 'not often', score: 0 },
@@ -458,9 +460,9 @@ export const dyslexiaCategories = [
       },
       {
         id: 'CDS-18',
-        text: 'Poor natural awareness of surroundings*.',
+        text: 'Challenges with organization and time management (e.g., keeping track of assignments, being on time).',
         subcategory: 'Comprehensive Dyslexia Assessment',
-        type: 'general',
+        type: 'organizational_skills',
         options: [
           { text: 'no', score: 0 },
           { text: 'not often', score: 0 },
@@ -471,9 +473,9 @@ export const dyslexiaCategories = [
       },
       {
         id: 'CDS-19',
-        text: 'Has poor general knowledge.',
+        text: 'Emotional difficulties related to learning (e.g., low self-esteem, anxiety, frustration).',
         subcategory: 'Comprehensive Dyslexia Assessment',
-        type: 'general',
+        type: 'emotional_impact',
         options: [
           { text: 'no', score: 0 },
           { text: 'not often', score: 0 },
@@ -484,243 +486,9 @@ export const dyslexiaCategories = [
       },
       {
         id: 'CDS-20',
-        text: 'Consistently low academic grades in some subjects.',
+        text: 'Family history of dyslexia or other learning difficulties.',
         subcategory: 'Comprehensive Dyslexia Assessment',
-        type: 'general',
-        options: [
-          { text: 'no', score: 0 },
-          { text: 'not often', score: 0 },
-          { text: 'sometimes', score: 1 },
-          { text: 'often', score: 1 },
-          { text: 'yes', score: 1 },
-        ],
-      },
-      {
-        id: 'CDS-21',
-        text: 'Overall, finds academic learning difficult.',
-        subcategory: 'Comprehensive Dyslexia Assessment',
-        type: 'general',
-        options: [
-          { text: 'no', score: 0 },
-          { text: 'not often', score: 0 },
-          { text: 'sometimes', score: 1 },
-          { text: 'often', score: 1 },
-          { text: 'yes', score: 1 },
-        ],
-      },
-      {
-        id: 'CDS-22',
-        text: 'Is disorganized and messy.',
-        subcategory: 'Comprehensive Dyslexia Assessment',
-        type: 'general',
-        options: [
-          { text: 'no', score: 0 },
-          { text: 'not often', score: 0 },
-          { text: 'sometimes', score: 1 },
-          { text: 'often', score: 1 },
-          { text: 'yes', score: 1 },
-        ],
-      },
-      {
-        id: 'CDS-23',
-        text: 'Difficulty planning, particularly when implementing an idea.',
-        subcategory: 'Comprehensive Dyslexia Assessment',
-        type: 'general',
-        options: [
-          { text: 'no', score: 0 },
-          { text: 'not often', score: 0 },
-          { text: 'sometimes', score: 1 },
-          { text: 'often', score: 1 },
-          { text: 'yes', score: 1 },
-        ],
-      },
-      {
-        id: 'CDS-24',
-        text: 'Difficulty ordering and sequencing.',
-        subcategory: 'Comprehensive Dyslexia Assessment',
-        type: 'general',
-        options: [
-          { text: 'no', score: 0 },
-          { text: 'not often', score: 0 },
-          { text: 'sometimes', score: 1 },
-          { text: 'often', score: 1 },
-          { text: 'yes', score: 1 },
-        ],
-      },
-      {
-        id: 'CDS-25',
-        text: 'Difficulty following instructions.',
-        subcategory: 'Comprehensive Dyslexia Assessment',
-        type: 'general',
-        options: [
-          { text: 'no', score: 0 },
-          { text: 'not often', score: 0 },
-          { text: 'sometimes', score: 1 },
-          { text: 'often', score: 1 },
-          { text: 'yes', score: 1 },
-        ],
-      },
-      {
-        id: 'CDS-26',
-        text: 'Is slow to complete routine tasks, e.g. dressing, showering, cleaning etc.',
-        subcategory: 'Comprehensive Dyslexia Assessment',
-        type: 'general',
-        options: [
-          { text: 'no', score: 0 },
-          { text: 'not often', score: 0 },
-          { text: 'sometimes', score: 1 },
-          { text: 'often', score: 1 },
-          { text: 'yes', score: 1 },
-        ],
-      },
-      {
-        id: 'CDS-27',
-        text: 'Struggles to be on time and is frequently late.',
-        subcategory: 'Comprehensive Dyslexia Assessment',
-        type: 'general',
-        options: [
-          { text: 'no', score: 0 },
-          { text: 'not often', score: 0 },
-          { text: 'sometimes', score: 1 },
-          { text: 'often', score: 1 },
-          { text: 'yes', score: 1 },
-        ],
-      },
-      {
-        id: 'CDS-28',
-        text: 'Is clumsy.',
-        subcategory: 'Comprehensive Dyslexia Assessment',
-        type: 'general',
-        options: [
-          { text: 'no', score: 0 },
-          { text: 'not often', score: 0 },
-          { text: 'sometimes', score: 1 },
-          { text: 'often', score: 1 },
-          { text: 'yes', score: 1 },
-        ],
-      },
-      {
-        id: 'CDS-29',
-        text: 'Often loses or misplaces items.',
-        subcategory: 'Comprehensive Dyslexia Assessment',
-        type: 'general',
-        options: [
-          { text: 'no', score: 0 },
-          { text: 'not often', score: 0 },
-          { text: 'sometimes', score: 1 },
-          { text: 'often', score: 1 },
-          { text: 'yes', score: 1 },
-        ],
-      },
-      {
-        id: 'CDS-30',
-        text: 'Exhibits laziness and slow at beginning tasks.',
-        subcategory: 'Comprehensive Dyslexia Assessment',
-        type: 'general',
-        options: [
-          { text: 'no', score: 0 },
-          { text: 'not often', score: 0 },
-          { text: 'sometimes', score: 1 },
-          { text: 'often', score: 1 },
-          { text: 'yes', score: 1 },
-        ],
-      },
-      {
-        id: 'CDS-31',
-        text: 'Periods of lacking confidence and low self-esteem.',
-        subcategory: 'Comprehensive Dyslexia Assessment',
-        type: 'general',
-        options: [
-          { text: 'no', score: 0 },
-          { text: 'not often', score: 0 },
-          { text: 'sometimes', score: 1 },
-          { text: 'often', score: 1 },
-          { text: 'yes', score: 1 },
-        ],
-      },
-      {
-        id: 'CDS-32',
-        text: 'Lacks initiative and relies on others for motivation.',
-        subcategory: 'Comprehensive Dyslexia Assessment',
-        type: 'general',
-        options: [
-          { text: 'no', score: 0 },
-          { text: 'not often', score: 0 },
-          { text: 'sometimes', score: 1 },
-          { text: 'often', score: 1 },
-          { text: 'yes', score: 1 },
-        ],
-      },
-      {
-        id: 'CDS-33',
-        text: 'Dislikes reading and/or rarely reads novels, magazines, or journals.',
-        subcategory: 'Comprehensive Dyslexia Assessment',
-        type: 'general',
-        options: [
-          { text: 'no', score: 0 },
-          { text: 'not often', score: 0 },
-          { text: 'sometimes', score: 1 },
-          { text: 'often', score: 1 },
-          { text: 'yes', score: 1 },
-        ],
-      },
-      {
-        id: 'CDS-34',
-        text: 'Possesses a particular interest in non-academic areas such as arts, crafts, music, photography.',
-        subcategory: 'Comprehensive Dyslexia Assessment',
-        type: 'general',
-        options: [
-          { text: 'no', score: 0 },
-          { text: 'not often', score: 0 },
-          { text: 'sometimes', score: 1 },
-          { text: 'often', score: 1 },
-          { text: 'yes', score: 1 },
-        ],
-      },
-      {
-        id: 'CDS-35',
-        text: 'Has occasional behavioural problems, e.g. loses temper, disruptive.',
-        subcategory: 'Comprehensive Dyslexia Assessment',
-        type: 'general',
-        options: [
-          { text: 'no', score: 0 },
-          { text: 'not often', score: 0 },
-          { text: 'sometimes', score: 1 },
-          { text: 'often', score: 1 },
-          { text: 'yes', score: 1 },
-        ],
-      },
-      {
-        id: 'CDS-36',
-        text: 'Is sensitive to background noise, e.g. holding a conversation against background sounds.',
-        subcategory: 'Comprehensive Dyslexia Assessment',
-        type: 'general',
-        options: [
-          { text: 'no', score: 0 },
-          { text: 'not often', score: 0 },
-          { text: 'sometimes', score: 1 },
-          { text: 'often', score: 1 },
-          { text: 'yes', score: 1 },
-        ],
-      },
-      {
-        id: 'CDS-37',
-        text: 'Has a poor sense of direction, i.e., finds it difficult to get around in a strange place.',
-        subcategory: 'Comprehensive Dyslexia Assessment',
-        type: 'general',
-        options: [
-          { text: 'no', score: 0 },
-          { text: 'not often', score: 0 },
-          { text: 'sometimes', score: 1 },
-          { text: 'often', score: 1 },
-          { text: 'yes', score: 1 },
-        ],
-      },
-      {
-        id: 'CDS-38',
-        text: 'Is slow to learn sports or follow drill instructions, including dance steps.',
-        subcategory: 'Comprehensive Dyslexia Assessment',
-        type: 'general',
+        type: 'family_history',
         options: [
           { text: 'no', score: 0 },
           { text: 'not often', score: 0 },
@@ -731,10 +499,4 @@ export const dyslexiaCategories = [
       },
     ]
   },
-  {
-    name: 'Comprehensive Dyslexia Assessment',
-    questions: []
-  }
-];
-
-// You can add question objects to the questions arrays later.   
+]; 

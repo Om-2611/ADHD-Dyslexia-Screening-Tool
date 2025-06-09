@@ -4,12 +4,13 @@ import Card from '../../components/ui/Card';
 import Button from '../../components/ui/Button';
 import { ArrowLeft, ArrowRight, Check } from 'lucide-react';
 import { ADHDSubcategory, getAllQuestions, Question } from '../../services/firebase';
-import { adhdCategories } from '../../data/adhdQuestions';
-import { dyslexiaCategories } from '../../data/dyslexiaQuestions';
+import { adhdCategories } from '../../data/adhdQuestions.ts';
+import { dyslexiaCategories } from '@/data/dyslexiaQuestions';
 import { db } from '../../config/firebase.ts';
 import { useAuth } from '../../components/auth/AuthContext';
 import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
 import { updateUserTestCount } from '../../services/firebase';
+import { QuestionOption } from '../../types/questionTypes';
 
 interface TestParams {
   [key: string]: string | undefined;
@@ -77,14 +78,14 @@ const TestEngine: React.FC = () => {
           const cat = adhdCategories.find(c => c.name === subcatMap[testId]);
           if (cat) {
             questions = [
-              ...cat.behavioralQuestions,
-              ...cat.performanceQuestions
+              ...(cat.behavioralQuestions || []),
+              ...(cat.performanceQuestions || [])
             ].map(q => ({
               id: q.id,
               text: q.text,
               questionType: q.type as 'behavioral' | 'performance',
               subcategory: testId as ADHDSubcategory,
-              options: q.options.map(opt => ({ value: opt.score, text: opt.text }))
+              options: q.options.map((opt: QuestionOption) => ({ value: opt.score, text: opt.text }))
             }));
           }
 
@@ -122,12 +123,12 @@ const TestEngine: React.FC = () => {
           };
           const cat = dyslexiaCategories.find(c => c.name === subcatMap[testId]);
           if (cat) {
-            questions = cat.questions.map(q => ({
+            questions = (cat.questions || []).map(q => ({
               id: q.id,
               text: q.text,
               questionType: 'general', // Or determine a suitable type if needed later
               subcategory: cat.name, // Use category name as subcategory
-              options: q.options.map(opt => ({ value: opt.score, text: opt.text }))
+              options: q.options.map((opt: QuestionOption) => ({ value: opt.score, text: opt.text }))
             }));
             title = cat.name;
             description = testId === 'basic' ? 'Basic screening questions for dyslexia.' : 'Comprehensive assessment questions for dyslexia.'; // Example descriptions

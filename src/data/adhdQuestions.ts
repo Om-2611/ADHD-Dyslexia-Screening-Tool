@@ -1,4 +1,6 @@
-export const adhdCategories = [
+import { QuestionCategory } from "../types/questionTypes";
+
+export const adhdCategories: QuestionCategory[] = [
     {
         name: 'Predominantly Inattentive',
         behavioralQuestions: [
@@ -271,7 +273,7 @@ export const adhdCategories = [
             },
             {
                 id: 'PH-5',
-                text: 'Is "on the go" or often acts as if "driven by a motor"',
+                text: 'Is "on the go" or acts as if "driven by a motor"',
                 subcategory: 'Predominantly Hyperactive',
                 type: 'behavioral',
                 options: [
@@ -283,7 +285,7 @@ export const adhdCategories = [
             },
             {
                 id: 'PH-6',
-                text: 'Talks too much',
+                text: 'Talks excessively',
                 subcategory: 'Predominantly Hyperactive',
                 type: 'behavioral',
                 options: [
@@ -307,7 +309,7 @@ export const adhdCategories = [
             },
             {
                 id: 'PH-8',
-                text: 'Has difficulty waiting his or her turn',
+                text: 'Has difficulty awaiting turn',
                 subcategory: 'Predominantly Hyperactive',
                 type: 'behavioral',
                 options: [
@@ -319,7 +321,7 @@ export const adhdCategories = [
             },
             {
                 id: 'PH-9',
-                text: 'Interrupts or intrudes on others (butts into conversations or games)',
+                text: 'Interrupts or intrudes on others (e.g., butts into conversations or games)',
                 subcategory: 'Predominantly Hyperactive',
                 type: 'behavioral',
                 options: [
@@ -438,11 +440,11 @@ export const adhdCategories = [
         ]
     },
     {
-        name: 'Oppositional Defiant Disorder',
+        name: 'Oppositional Defiant Disorder (ODD)',
         behavioralQuestions: [
             {
                 id: 'ODD-1',
-                text: 'Argues with adults',
+                text: 'Often loses temper',
                 subcategory: 'Oppositional Defiant Disorder',
                 type: 'behavioral',
                 options: [
@@ -454,7 +456,7 @@ export const adhdCategories = [
             },
             {
                 id: 'ODD-2',
-                text: 'Loses temper',
+                text: 'Is often touchy or easily annoyed',
                 subcategory: 'Oppositional Defiant Disorder',
                 type: 'behavioral',
                 options: [
@@ -466,7 +468,7 @@ export const adhdCategories = [
             },
             {
                 id: 'ODD-3',
-                text: 'Actively defies or refuses to comply with adults\' requests or rules',
+                text: 'Is often angry and resentful',
                 subcategory: 'Oppositional Defiant Disorder',
                 type: 'behavioral',
                 options: [
@@ -478,7 +480,7 @@ export const adhdCategories = [
             },
             {
                 id: 'ODD-4',
-                text: 'Deliberately annoys people',
+                text: 'Actively defies or refuses to comply with adult requests or rules',
                 subcategory: 'Oppositional Defiant Disorder',
                 type: 'behavioral',
                 options: [
@@ -490,7 +492,7 @@ export const adhdCategories = [
             },
             {
                 id: 'ODD-5',
-                text: 'Blames others for his or her mistakes or misbehaviors',
+                text: 'Deliberately annoys others',
                 subcategory: 'Oppositional Defiant Disorder',
                 type: 'behavioral',
                 options: [
@@ -502,7 +504,7 @@ export const adhdCategories = [
             },
             {
                 id: 'ODD-6',
-                text: 'Is touchy or easily annoyed by others',
+                text: 'Blames others for his or her mistakes or misbehavior',
                 subcategory: 'Oppositional Defiant Disorder',
                 type: 'behavioral',
                 options: [
@@ -514,7 +516,7 @@ export const adhdCategories = [
             },
             {
                 id: 'ODD-7',
-                text: 'Is angry or resentful',
+                text: 'Is often spiteful or vindictive',
                 subcategory: 'Oppositional Defiant Disorder',
                 type: 'behavioral',
                 options: [
@@ -526,7 +528,7 @@ export const adhdCategories = [
             },
             {
                 id: 'ODD-8',
-                text: 'Is spiteful and vindictive',
+                text: 'Has stolen or shoplifted',
                 subcategory: 'Oppositional Defiant Disorder',
                 type: 'behavioral',
                 options: [
@@ -645,7 +647,7 @@ export const adhdCategories = [
         ]
     },
     {
-        name: 'Conduct Disorder',
+        name: 'Conduct Disorder (CD)',
         behavioralQuestions: [
             {
                 id: 'CD-1',
@@ -673,7 +675,7 @@ export const adhdCategories = [
             },
             {
                 id: 'CD-3',
-                text: 'Lies to obtain goods for favors or to avoid obligations ("cons" others)',
+                text: 'Has used a weapon that can cause serious physical harm to others',
                 subcategory: 'Conduct Disorder',
                 type: 'behavioral',
                 options: [
@@ -685,7 +687,7 @@ export const adhdCategories = [
             },
             {
                 id: 'CD-4',
-                text: 'Is truant from school ( skips school) without permission',
+                text: 'Has been physically cruel to people',
                 subcategory: 'Conduct Disorder',
                 type: 'behavioral',
                 options: [
@@ -697,7 +699,7 @@ export const adhdCategories = [
             },
             {
                 id: 'CD-5',
-                text: 'Is physically cruel to people',
+                text: 'Has been physically cruel to animals',
                 subcategory: 'Conduct Disorder',
                 type: 'behavioral',
                 options: [
@@ -709,7 +711,7 @@ export const adhdCategories = [
             },
             {
                 id: 'CD-6',
-                text: 'Has stolen items of nontrivial value',
+                text: 'Has stolen while confronting a victim',
                 subcategory: 'Conduct Disorder',
                 type: 'behavioral',
                 options: [
@@ -721,7 +723,7 @@ export const adhdCategories = [
             },
             {
                 id: 'CD-7',
-                text: 'Deliberately destroys others\' property',
+                text: 'Has forced someone into sexual activity',
                 subcategory: 'Conduct Disorder',
                 type: 'behavioral',
                 options: [
@@ -733,7 +735,7 @@ export const adhdCategories = [
             },
             {
                 id: 'CD-8',
-                text: 'Has used a weapon that can cause serious harm (bat, knife, brick, gun)',
+                text: 'Has set fires with intention of causing serious damage',
                 subcategory: 'Conduct Disorder',
                 type: 'behavioral',
                 options: [
@@ -745,7 +747,7 @@ export const adhdCategories = [
             },
             {
                 id: 'CD-9',
-                text: 'Is physically cruel to animals',
+                text: 'Has deliberately destroyed others\' property (other than by fire)',
                 subcategory: 'Conduct Disorder',
                 type: 'behavioral',
                 options: [
@@ -757,7 +759,7 @@ export const adhdCategories = [
             },
             {
                 id: 'CD-10',
-                text: 'Has deliberately set fires to cause damage',
+                text: 'Has broken into someone else\'s house, building, or car',
                 subcategory: 'Conduct Disorder',
                 type: 'behavioral',
                 options: [
@@ -769,7 +771,7 @@ export const adhdCategories = [
             },
             {
                 id: 'CD-11',
-                text: 'Has broken into someone else\'s home, business, or car',
+                text: 'Often lies to obtain goods or favors or to avoid obligations',
                 subcategory: 'Conduct Disorder',
                 type: 'behavioral',
                 options: [
@@ -781,7 +783,7 @@ export const adhdCategories = [
             },
             {
                 id: 'CD-12',
-                text: 'Has stayed out at night without permission',
+                text: 'Has stolen items of nontrivial value without confronting a victim',
                 subcategory: 'Conduct Disorder',
                 type: 'behavioral',
                 options: [
@@ -793,7 +795,7 @@ export const adhdCategories = [
             },
             {
                 id: 'CD-13',
-                text: 'Has run away from home overnight',
+                text: 'Stays out at night despite parental prohibitions (beginning before age 13)',
                 subcategory: 'Conduct Disorder',
                 type: 'behavioral',
                 options: [
@@ -805,7 +807,19 @@ export const adhdCategories = [
             },
             {
                 id: 'CD-14',
-                text: 'Has forced someone into sexual activity',
+                text: 'Has run away from home overnight at least twice while living in parental or parental surrogate home',
+                subcategory: 'Conduct Disorder',
+                type: 'behavioral',
+                options: [
+                    { text: 'Never', score: 0 },
+                    { text: 'Occasionally', score: 0 },
+                    { text: 'Often', score: 1 },
+                    { text: 'Very Often', score: 1 },
+                ],
+            },
+            {
+                id: 'CD-15',
+                text: 'Is often truant from school (beginning before age 13)',
                 subcategory: 'Conduct Disorder',
                 type: 'behavioral',
                 options: [
@@ -928,7 +942,7 @@ export const adhdCategories = [
         behavioralQuestions: [
             {
                 id: 'AD-1',
-                text: 'Is fearful, anxious, or worried',
+                text: 'Worries about school performance or grades',
                 subcategory: 'Anxiety Disorder',
                 type: 'behavioral',
                 options: [
@@ -940,7 +954,7 @@ export const adhdCategories = [
             },
             {
                 id: 'AD-2',
-                text: 'Is afraid to try new things for fear of making mistakes',
+                text: 'Is excessively worried about future events',
                 subcategory: 'Anxiety Disorder',
                 type: 'behavioral',
                 options: [
@@ -952,7 +966,7 @@ export const adhdCategories = [
             },
             {
                 id: 'AD-3',
-                text: 'Feels worthless or inferior',
+                text: 'Is excessively worried about fitting in with peers',
                 subcategory: 'Anxiety Disorder',
                 type: 'behavioral',
                 options: [
@@ -964,7 +978,7 @@ export const adhdCategories = [
             },
             {
                 id: 'AD-4',
-                text: 'Blames self for problems, feels guilty',
+                text: 'Is excessively worried about family matters',
                 subcategory: 'Anxiety Disorder',
                 type: 'behavioral',
                 options: [
@@ -976,7 +990,7 @@ export const adhdCategories = [
             },
             {
                 id: 'AD-5',
-                text: 'Feels lonely, unwanted, or unloved; complains that "no one loves" him or her',
+                text: 'Is excessively worried about their own physical health',
                 subcategory: 'Anxiety Disorder',
                 type: 'behavioral',
                 options: [
@@ -988,7 +1002,7 @@ export const adhdCategories = [
             },
             {
                 id: 'AD-6',
-                text: 'Is sad, unhappy, or depressed',
+                text: 'Is excessively worried about their safety or the safety of others',
                 subcategory: 'Anxiety Disorder',
                 type: 'behavioral',
                 options: [
@@ -1000,7 +1014,31 @@ export const adhdCategories = [
             },
             {
                 id: 'AD-7',
-                text: 'Is self-conscious or easily embarrassed',
+                text: 'Is excessively worried about social situations',
+                subcategory: 'Anxiety Disorder',
+                type: 'behavioral',
+                options: [
+                    { text: 'Never', score: 0 },
+                    { text: 'Occasionally', score: 0 },
+                    { text: 'Often', score: 1 },
+                    { text: 'Very Often', score: 1 },
+                ],
+            },
+            {
+                id: 'AD-8',
+                text: 'Is excessively worried about making mistakes',
+                subcategory: 'Anxiety Disorder',
+                type: 'behavioral',
+                options: [
+                    { text: 'Never', score: 0 },
+                    { text: 'Occasionally', score: 0 },
+                    { text: 'Often', score: 1 },
+                    { text: 'Very Often', score: 1 },
+                ],
+            },
+            {
+                id: 'AD-9',
+                text: 'Is excessively worried about being perfect',
                 subcategory: 'Anxiety Disorder',
                 type: 'behavioral',
                 options: [
@@ -1118,4 +1156,4 @@ export const adhdCategories = [
             },
         ]
     }
-];
+]; 
