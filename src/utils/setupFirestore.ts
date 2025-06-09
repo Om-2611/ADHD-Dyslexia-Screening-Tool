@@ -1,5 +1,5 @@
 import { doc, writeBatch, getDoc } from 'firebase/firestore';
-import { db } from '../config/firebase';
+import { db } from '../config/firebase.ts';
 
 /**
  * Sets up the Firestore database with the test structure

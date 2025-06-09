@@ -10,7 +10,7 @@ import {
   LogOut,
   User as UserIcon
 } from 'lucide-react';
-import { db } from '../../config/firebase';
+import { db } from '../../config/firebase.ts';
 import { collection, query, where, orderBy, getDocs, doc, getDoc } from 'firebase/firestore';
 import { generateTestPDF } from '../../utils/pdfGenerator';
 

@@ -1,5 +1,5 @@
 import { collection, doc, writeBatch } from 'firebase/firestore';
-import { db } from '../config/firebase';
+import { db } from '../config/firebase.ts';
 
 const initializeFirestore = async () => {
   const batch = writeBatch(db);
