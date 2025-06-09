@@ -181,7 +181,6 @@ const TestResults: React.FC = () => {
       const pdfHeight = pdf.internal.pageSize.getHeight();
       const imgWidth = canvas.width;
       const imgHeight = canvas.height;
-      const ratio = Math.min(pdfWidth / imgWidth, pdfHeight / imgHeight);
 
       // Add test information
       pdf.setFontSize(20);

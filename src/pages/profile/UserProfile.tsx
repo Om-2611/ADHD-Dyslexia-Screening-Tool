@@ -8,9 +8,7 @@ import {
   Clock, 
   FileText,
   LogOut,
-  User as UserIcon,
-  Edit,
-  Save
+  User as UserIcon
 } from 'lucide-react';
 import { db } from '../../config/firebase';
 import { collection, query, where, orderBy, getDocs, doc, getDoc, setDoc } from 'firebase/firestore';
@@ -52,7 +50,6 @@ const UserProfile: React.FC = () => {
     email: currentUser?.email || '',
     createdAt: currentUser?.metadata.creationTime ? new Date(currentUser.metadata.creationTime) : undefined,
   });
-  const [isEditingPersonalDetails, setIsEditingPersonalDetails] = useState(false);
   const [personalDetailsError, setPersonalDetailsError] = useState<string | null>(null);
 
   useEffect(() => {
@@ -138,7 +135,6 @@ const UserProfile: React.FC = () => {
         uid: currentUser.uid,
       }, { merge: true });
 
-      setIsEditingPersonalDetails(false);
     } catch (error: any) {
       console.error('Error updating personal details:', error);
       setPersonalDetailsError(`Failed to update personal details. Please try again. Error: ${error.message || error}`);

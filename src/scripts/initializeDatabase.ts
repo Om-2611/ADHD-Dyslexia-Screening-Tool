@@ -1,5 +1,5 @@
 import { initializeApp } from 'firebase/app';
-import { getFirestore, collection, doc, setDoc, getDocs, query, where, deleteDoc, serverTimestamp, addDoc } from 'firebase/firestore';
+import { getFirestore, collection, serverTimestamp, addDoc } from 'firebase/firestore';
 import { DEFAULT_BEHAVIORAL_OPTIONS } from '../services/firebase';
 
 // Initialize Firebase
