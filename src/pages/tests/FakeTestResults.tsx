@@ -3,7 +3,6 @@ import { useParams, useLocation } from 'react-router-dom';
 import Card from '../../components/ui/Card';
 import Button from '../../components/ui/Button'; // Assuming Button component exists
 import jsPDF from 'jspdf';
-import html2canvas from 'html2canvas';
 
 interface Answer {
   value: number;
