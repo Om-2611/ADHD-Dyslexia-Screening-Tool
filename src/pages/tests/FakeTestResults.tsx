@@ -172,9 +172,6 @@ const TestResults: React.FC = () => {
     if (!resultRef.current) return;
 
     try {
-      // Create a canvas from the result content
-      const canvas = await html2canvas(resultRef.current);
-
       // Create PDF
       const pdf = new jsPDF('p', 'mm', 'a4');
       const pdfWidth = pdf.internal.pageSize.getWidth();

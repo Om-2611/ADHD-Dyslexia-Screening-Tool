@@ -11,7 +11,7 @@ import {
   User as UserIcon
 } from 'lucide-react';
 import { db } from '../../config/firebase';
-import { collection, query, where, orderBy, getDocs, doc, getDoc, setDoc } from 'firebase/firestore';
+import { collection, query, where, orderBy, getDocs, doc, getDoc } from 'firebase/firestore';
 import { generateTestPDF } from '../../utils/pdfGenerator';
 
 interface TestResult {
