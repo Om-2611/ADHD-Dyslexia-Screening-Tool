@@ -2,7 +2,9 @@ import { QuestionCategory } from "../types/questionTypes";
 
 export const adhdCategories: QuestionCategory[] = [
     {
+        id: 'predominantly_inattentive',
         name: 'Predominantly Inattentive',
+        description: 'Symptoms primarily related to inattention, such as difficulty focusing, forgetfulness, and disorganization.',
         behavioralQuestions: [
             {
                 id: 'PI-1',
@@ -221,7 +223,9 @@ export const adhdCategories: QuestionCategory[] = [
         ]
     },
     {
+        id: 'predominantly_hyperactive',
         name: 'Predominantly Hyperactive',
+        description: 'Symptoms primarily related to hyperactivity and impulsivity, such as fidgeting, difficulty staying seated, and interrupting others.',
         behavioralQuestions: [
             {
                 id: 'PH-1',
@@ -249,7 +253,7 @@ export const adhdCategories: QuestionCategory[] = [
             },
             {
                 id: 'PH-3',
-                text: 'Runs about or climbs excessively in situations when remaining seated is expected',
+                text: 'Runs about or climbs excessively in situations where it is inappropriate (in adolescents or adults, may be limited to subjective feelings of restlessness)',
                 subcategory: 'Predominantly Hyperactive',
                 type: 'behavioral',
                 options: [
@@ -273,7 +277,7 @@ export const adhdCategories: QuestionCategory[] = [
             },
             {
                 id: 'PH-5',
-                text: 'Is "on the go" or acts as if "driven by a motor"',
+                text: 'Is often "on the go" or acts as if "driven by a motor"',
                 subcategory: 'Predominantly Hyperactive',
                 type: 'behavioral',
                 options: [
@@ -285,7 +289,7 @@ export const adhdCategories: QuestionCategory[] = [
             },
             {
                 id: 'PH-6',
-                text: 'Talks excessively',
+                text: 'Often talks excessively',
                 subcategory: 'Predominantly Hyperactive',
                 type: 'behavioral',
                 options: [
@@ -297,7 +301,7 @@ export const adhdCategories: QuestionCategory[] = [
             },
             {
                 id: 'PH-7',
-                text: 'Blurts out answers before questions have been completed',
+                text: 'Often blurts out answers before questions have been completed',
                 subcategory: 'Predominantly Hyperactive',
                 type: 'behavioral',
                 options: [
@@ -309,7 +313,7 @@ export const adhdCategories: QuestionCategory[] = [
             },
             {
                 id: 'PH-8',
-                text: 'Has difficulty awaiting turn',
+                text: 'Has difficulty waiting his or her turn',
                 subcategory: 'Predominantly Hyperactive',
                 type: 'behavioral',
                 options: [
@@ -321,7 +325,7 @@ export const adhdCategories: QuestionCategory[] = [
             },
             {
                 id: 'PH-9',
-                text: 'Interrupts or intrudes on others (e.g., butts into conversations or games)',
+                text: 'Often interrupts or intrudes on others (butts into conversations or games)',
                 subcategory: 'Predominantly Hyperactive',
                 type: 'behavioral',
                 options: [
@@ -440,12 +444,47 @@ export const adhdCategories: QuestionCategory[] = [
         ]
     },
     {
-        name: 'Oppositional Defiant Disorder',
+        id: 'combined_type',
+        name: 'Combined Type',
+        description: 'Meeting criteria for both inattention and hyperactivity-impulsivity.',
+        behavioralQuestions: [
+            { id: 'CT-1', text: 'Combines symptoms of both inattention and hyperactivity/impulsivity', subcategory: 'Combined Type', type: 'behavioral', options: [{ text: 'Never', score: 0 }, { text: 'Occasionally', score: 0 }, { text: 'Often', score: 1 }, { text: 'Very Often', score: 1 }] },
+        ],
+        performanceQuestions: [
+            { id: 'CT-Perf-1', text: 'Overall academic performance', subcategory: 'Combined Type', type: 'performance', options: [{ text: '1- very problematic', score: 1 }, { text: '2- problematic', score: 1 }, { text: '3- below average', score: 0 }, { text: '4- average', score: 0 }, { text: '5- good', score: 0 }] },
+        ]
+    },
+    {
+        id: 'other_specified_adhd',
+        name: 'Other Specified ADHD',
+        description: 'Symptoms characteristic of ADHD that cause clinically significant distress or impairment but do not meet the full criteria for ADHD.',
+        behavioralQuestions: [
+            { id: 'OSA-1', text: 'Presents with symptoms of ADHD that do not meet full criteria', subcategory: 'Other Specified ADHD', type: 'behavioral', options: [{ text: 'Never', score: 0 }, { text: 'Occasionally', score: 0 }, { text: 'Often', score: 1 }, { text: 'Very Often', score: 1 }] },
+        ],
+        performanceQuestions: [
+            { id: 'OSA-Perf-1', text: 'Impact on daily functioning', subcategory: 'Other Specified ADHD', type: 'performance', options: [{ text: '1- very problematic', score: 1 }, { text: '2- problematic', score: 1 }, { text: '3- below average', score: 0 }, { text: '4- average', score: 0 }, { text: '5- good', score: 0 }] },
+        ]
+    },
+    {
+        id: 'unspecified_adhd',
+        name: 'Unspecified ADHD',
+        description: 'Symptoms characteristic of ADHD that cause clinically significant distress or impairment but do not meet the full criteria for ADHD. Used in situations where the clinician chooses not to specify the reason that the criteria are not met.',
+        behavioralQuestions: [
+            { id: 'UA-1', text: 'Symptoms of ADHD are present but not fully specified', subcategory: 'Unspecified ADHD', type: 'behavioral', options: [{ text: 'Never', score: 0 }, { text: 'Occasionally', score: 0 }, { text: 'Often', score: 1 }, { text: 'Very Often', score: 1 }] },
+        ],
+        performanceQuestions: [
+            { id: 'UA-Perf-1', text: 'Overall impact on life', subcategory: 'Unspecified ADHD', type: 'performance', options: [{ text: '1- very problematic', score: 1 }, { text: '2- problematic', score: 1 }, { text: '3- below average', score: 0 }, { text: '4- average', score: 0 }, { text: '5- good', score: 0 }] },
+        ]
+    },
+    {
+        id: 'anxiety_disorder',
+        name: 'Anxiety Disorder',
+        description: 'Excessive and persistent worry and fear about everyday situations.',
         behavioralQuestions: [
             {
-                id: 'ODD-1',
-                text: 'Argues with adults',
-                subcategory: 'Oppositional Defiant Disorder',
+                id: 'AD-1',
+                text: 'Is excessively worried about school performance',
+                subcategory: 'Anxiety Disorder',
                 type: 'behavioral',
                 options: [
                     { text: 'Never', score: 0 },
@@ -455,9 +494,9 @@ export const adhdCategories: QuestionCategory[] = [
                 ],
             },
             {
-                id: 'ODD-2',
-                text: 'Loses temper',
-                subcategory: 'Oppositional Defiant Disorder',
+                id: 'AD-2',
+                text: 'Is excessively worried about future events',
+                subcategory: 'Anxiety Disorder',
                 type: 'behavioral',
                 options: [
                     { text: 'Never', score: 0 },
@@ -467,9 +506,9 @@ export const adhdCategories: QuestionCategory[] = [
                 ],
             },
             {
-                id: 'ODD-3',
-                text: 'Actively defies or refuses to comply with adults\' requests or rules',
-                subcategory: 'Oppositional Defiant Disorder',
+                id: 'AD-3',
+                text: 'Is excessively worried about fitting in with peers',
+                subcategory: 'Anxiety Disorder',
                 type: 'behavioral',
                 options: [
                     { text: 'Never', score: 0 },
@@ -479,9 +518,9 @@ export const adhdCategories: QuestionCategory[] = [
                 ],
             },
             {
-                id: 'ODD-4',
-                text: 'Deliberately annoys people',
-                subcategory: 'Oppositional Defiant Disorder',
+                id: 'AD-4',
+                text: 'Is excessively worried about family matters',
+                subcategory: 'Anxiety Disorder',
                 type: 'behavioral',
                 options: [
                     { text: 'Never', score: 0 },
@@ -491,9 +530,9 @@ export const adhdCategories: QuestionCategory[] = [
                 ],
             },
             {
-                id: 'ODD-5',
-                text: 'Blames others for his or her mistakes or misbehaviors',
-                subcategory: 'Oppositional Defiant Disorder',
+                id: 'AD-5',
+                text: 'Is excessively worried about their own physical health',
+                subcategory: 'Anxiety Disorder',
                 type: 'behavioral',
                 options: [
                     { text: 'Never', score: 0 },
@@ -503,9 +542,9 @@ export const adhdCategories: QuestionCategory[] = [
                 ],
             },
             {
-                id: 'ODD-6',
-                text: 'Is touchy or easily annoyed by others',
-                subcategory: 'Oppositional Defiant Disorder',
+                id: 'AD-6',
+                text: 'Is excessively worried about their safety or the safety of others',
+                subcategory: 'Anxiety Disorder',
                 type: 'behavioral',
                 options: [
                     { text: 'Never', score: 0 },
@@ -515,9 +554,9 @@ export const adhdCategories: QuestionCategory[] = [
                 ],
             },
             {
-                id: 'ODD-7',
-                text: 'Is angry or resentful',
-                subcategory: 'Oppositional Defiant Disorder',
+                id: 'AD-7',
+                text: 'Is excessively worried about social situations',
+                subcategory: 'Anxiety Disorder',
                 type: 'behavioral',
                 options: [
                     { text: 'Never', score: 0 },
@@ -527,9 +566,21 @@ export const adhdCategories: QuestionCategory[] = [
                 ],
             },
             {
-                id: 'ODD-8',
-                text: 'Is spiteful and vindictive',
-                subcategory: 'Oppositional Defiant Disorder',
+                id: 'AD-8',
+                text: 'Is excessively worried about making mistakes',
+                subcategory: 'Anxiety Disorder',
+                type: 'behavioral',
+                options: [
+                    { text: 'Never', score: 0 },
+                    { text: 'Occasionally', score: 0 },
+                    { text: 'Often', score: 1 },
+                    { text: 'Very Often', score: 1 },
+                ],
+            },
+            {
+                id: 'AD-9',
+                text: 'Is excessively worried about being perfect',
+                subcategory: 'Anxiety Disorder',
                 type: 'behavioral',
                 options: [
                     { text: 'Never', score: 0 },
@@ -541,7 +592,216 @@ export const adhdCategories: QuestionCategory[] = [
         ],
         performanceQuestions: [
             {
-                id: 'ODD-Perf-1',
+                id: 'AD-Perf-1',
+                text: 'Performance in Reading',
+                subcategory: 'Anxiety Disorder',
+                type: 'performance',
+                options: [
+                    { text: '1- very problematic', score: 1 },
+                    { text: '2- problematic', score: 1 },
+                    { text: '3- below average', score: 0 },
+                    { text: '4- average', score: 0 },
+                    { text: '5- good', score: 0 },
+                ],
+            },
+            {
+                id: 'AD-Perf-2',
+                text: 'Performance in Mathematics',
+                subcategory: 'Anxiety Disorder',
+                type: 'performance',
+                options: [
+                    { text: '1- very problematic', score: 1 },
+                    { text: '2- problematic', score: 1 },
+                    { text: '3- below average', score: 0 },
+                    { text: '4- average', score: 0 },
+                    { text: '5- good', score: 0 },
+                ],
+            },
+            {
+                id: 'AD-Perf-3',
+                text: 'Performance in Written expression',
+                subcategory: 'Anxiety Disorder',
+                type: 'performance',
+                options: [
+                    { text: '1- very problematic', score: 1 },
+                    { text: '2- problematic', score: 1 },
+                    { text: '3- below average', score: 0 },
+                    { text: '4- average', score: 0 },
+                    { text: '5- good', score: 0 },
+                ],
+            },
+            {
+                id: 'AD-Perf-4',
+                text: 'Relationships with peers',
+                subcategory: 'Anxiety Disorder',
+                type: 'performance',
+                options: [
+                    { text: '1- very problematic', score: 1 },
+                    { text: '2- problematic', score: 1 },
+                    { text: '3- below average', score: 0 },
+                    { text: '4- average', score: 0 },
+                    { text: '5- good', score: 0 },
+                ],
+            },
+            {
+                id: 'AD-Perf-5',
+                text: 'Following directions/rules',
+                subcategory: 'Anxiety Disorder',
+                type: 'performance',
+                options: [
+                    { text: '1- very problematic', score: 1 },
+                    { text: '2- problematic', score: 1 },
+                    { text: '3- below average', score: 0 },
+                    { text: '4- average', score: 0 },
+                    { text: '5- good', score: 0 },
+                ],
+            },
+            {
+                id: 'AD-Perf-6',
+                text: 'Disrupting class',
+                subcategory: 'Anxiety Disorder',
+                type: 'performance',
+                options: [
+                    { text: '1- very problematic', score: 1 },
+                    { text: '2- problematic', score: 1 },
+                    { text: '3- below average', score: 0 },
+                    { text: '4- average', score: 0 },
+                    { text: '5- good', score: 0 },
+                ],
+            },
+            {
+                id: 'AD-Perf-7',
+                text: 'Assignment completion',
+                subcategory: 'Anxiety Disorder',
+                type: 'performance',
+                options: [
+                    { text: '1- very problematic', score: 1 },
+                    { text: '2- problematic', score: 1 },
+                    { text: '3- below average', score: 0 },
+                    { text: '4- average', score: 0 },
+                    { text: '5- good', score: 0 },
+                ],
+            },
+            {
+                id: 'AD-Perf-8',
+                text: 'Organizational skills',
+                subcategory: 'Anxiety Disorder',
+                type: 'performance',
+                options: [
+                    { text: '1- very problematic', score: 1 },
+                    { text: '2- problematic', score: 1 },
+                    { text: '3- below average', score: 0 },
+                    { text: '4- average', score: 0 },
+                    { text: '5- good', score: 0 },
+                ],
+            },
+        ]
+    },
+    {
+        id: 'odd',
+        name: 'Oppositional Defiant Disorder',
+        description: 'A pattern of negativistic, hostile, or defiant behavior lasting at least 6 months.',
+        behavioralQuestions: [
+            {
+                id: 'odd_1',
+                text: 'Often loses temper',
+                subcategory: 'Oppositional Defiant Disorder',
+                type: 'behavioral',
+                options: [
+                    { text: 'Never', score: 0 },
+                    { text: 'Occasionally', score: 0 },
+                    { text: 'Often', score: 1 },
+                    { text: 'Very Often', score: 1 }
+                ]
+            },
+            {
+                id: 'odd_2',
+                text: 'Is often touchy or easily annoyed by others',
+                subcategory: 'Oppositional Defiant Disorder',
+                type: 'behavioral',
+                options: [
+                    { text: 'Never', score: 0 },
+                    { text: 'Occasionally', score: 0 },
+                    { text: 'Often', score: 1 },
+                    { text: 'Very Often', score: 1 }
+                ]
+            },
+            {
+                id: 'odd_3',
+                text: 'Is often angry and resentful',
+                subcategory: 'Oppositional Defiant Disorder',
+                type: 'behavioral',
+                options: [
+                    { text: 'Never', score: 0 },
+                    { text: 'Occasionally', score: 0 },
+                    { text: 'Often', score: 1 },
+                    { text: 'Very Often', score: 1 }
+                ]
+            },
+            {
+                id: 'odd_4',
+                text: 'Often argues with authority figures or, for children and adolescents, with adults',
+                subcategory: 'Oppositional Defiant Disorder',
+                type: 'behavioral',
+                options: [
+                    { text: 'Never', score: 0 },
+                    { text: 'Occasionally', score: 0 },
+                    { text: 'Often', score: 1 },
+                    { text: 'Very Often', score: 1 }
+                ]
+            },
+            {
+                id: 'odd_5',
+                text: 'Often actively defies or refuses to comply with requests from authority figures or with rules',
+                subcategory: 'Oppositional Defiant Disorder',
+                type: 'behavioral',
+                options: [
+                    { text: 'Never', score: 0 },
+                    { text: 'Occasionally', score: 0 },
+                    { text: 'Often', score: 1 },
+                    { text: 'Very Often', score: 1 }
+                ]
+            },
+            {
+                id: 'odd_6',
+                text: 'Often deliberately annoys others',
+                subcategory: 'Oppositional Defiant Disorder',
+                type: 'behavioral',
+                options: [
+                    { text: 'Never', score: 0 },
+                    { text: 'Occasionally', score: 0 },
+                    { text: 'Often', score: 1 },
+                    { text: 'Very Often', score: 1 }
+                ]
+            },
+            {
+                id: 'odd_7',
+                text: 'Often blames others for his or her mistakes or misbehavior',
+                subcategory: 'Oppositional Defiant Disorder',
+                type: 'behavioral',
+                options: [
+                    { text: 'Never', score: 0 },
+                    { text: 'Occasionally', score: 0 },
+                    { text: 'Often', score: 1 },
+                    { text: 'Very Often', score: 1 }
+                ]
+            },
+            {
+                id: 'odd_8',
+                text: 'Has been spiteful or vindictive at least twice during the past 6 months',
+                subcategory: 'Oppositional Defiant Disorder',
+                type: 'behavioral',
+                options: [
+                    { text: 'Never', score: 0 },
+                    { text: 'Occasionally', score: 0 },
+                    { text: 'Often', score: 1 },
+                    { text: 'Very Often', score: 1 }
+                ]
+            }
+        ],
+        performanceQuestions: [
+            {
+                id: 'odd_perf_1',
                 text: 'Performance in Reading',
                 subcategory: 'Oppositional Defiant Disorder',
                 type: 'performance',
@@ -550,11 +810,11 @@ export const adhdCategories: QuestionCategory[] = [
                     { text: '2- problematic', score: 1 },
                     { text: '3- below average', score: 0 },
                     { text: '4- average', score: 0 },
-                    { text: '5- good', score: 0 },
-                ],
+                    { text: '5- good', score: 0 }
+                ]
             },
             {
-                id: 'ODD-Perf-2',
+                id: 'odd_perf_2',
                 text: 'Performance in Mathematics',
                 subcategory: 'Oppositional Defiant Disorder',
                 type: 'performance',
@@ -563,11 +823,11 @@ export const adhdCategories: QuestionCategory[] = [
                     { text: '2- problematic', score: 1 },
                     { text: '3- below average', score: 0 },
                     { text: '4- average', score: 0 },
-                    { text: '5- good', score: 0 },
-                ],
+                    { text: '5- good', score: 0 }
+                ]
             },
             {
-                id: 'ODD-Perf-3',
+                id: 'odd_perf_3',
                 text: 'Performance in Written expression',
                 subcategory: 'Oppositional Defiant Disorder',
                 type: 'performance',
@@ -576,11 +836,11 @@ export const adhdCategories: QuestionCategory[] = [
                     { text: '2- problematic', score: 1 },
                     { text: '3- below average', score: 0 },
                     { text: '4- average', score: 0 },
-                    { text: '5- good', score: 0 },
-                ],
+                    { text: '5- good', score: 0 }
+                ]
             },
             {
-                id: 'ODD-Perf-4',
+                id: 'odd_perf_4',
                 text: 'Relationships with peers',
                 subcategory: 'Oppositional Defiant Disorder',
                 type: 'performance',
@@ -589,11 +849,11 @@ export const adhdCategories: QuestionCategory[] = [
                     { text: '2- problematic', score: 1 },
                     { text: '3- below average', score: 0 },
                     { text: '4- average', score: 0 },
-                    { text: '5- good', score: 0 },
-                ],
+                    { text: '5- good', score: 0 }
+                ]
             },
             {
-                id: 'ODD-Perf-5',
+                id: 'odd_perf_5',
                 text: 'Following directions/rules',
                 subcategory: 'Oppositional Defiant Disorder',
                 type: 'performance',
@@ -602,11 +862,11 @@ export const adhdCategories: QuestionCategory[] = [
                     { text: '2- problematic', score: 1 },
                     { text: '3- below average', score: 0 },
                     { text: '4- average', score: 0 },
-                    { text: '5- good', score: 0 },
-                ],
+                    { text: '5- good', score: 0 }
+                ]
             },
             {
-                id: 'ODD-Perf-6',
+                id: 'odd_perf_6',
                 text: 'Disrupting class',
                 subcategory: 'Oppositional Defiant Disorder',
                 type: 'performance',
@@ -615,12 +875,12 @@ export const adhdCategories: QuestionCategory[] = [
                     { text: '2- problematic', score: 1 },
                     { text: '3- below average', score: 0 },
                     { text: '4- average', score: 0 },
-                    { text: '5- good', score: 0 },
-                ],
+                    { text: '5- good', score: 0 }
+                ]
             },
             {
-                id: 'ODD-Perf-7',
-                text: 'Assignment completion',
+                id: 'odd_perf_7',
+                text: 'Organizational skills',
                 subcategory: 'Oppositional Defiant Disorder',
                 type: 'performance',
                 options: [
@@ -628,10 +888,10 @@ export const adhdCategories: QuestionCategory[] = [
                     { text: '2- problematic', score: 1 },
                     { text: '3- below average', score: 0 },
                     { text: '4- average', score: 0 },
-                    { text: '5- good', score: 0 },
-                ],
-            },
-        ],
+                    { text: '5- good', score: 0 }
+                ]
+            }
+        ]
     },
     {
         id: 'conduct_disorder',
@@ -904,225 +1164,6 @@ export const adhdCategories: QuestionCategory[] = [
                     { text: 'Never', score: 3 }
                 ]
             }
-        ]
-    },
-    {
-        name: 'Anxiety Disorder',
-        behavioralQuestions: [
-            {
-                id: 'AD-1',
-                text: 'Worries about school performance or grades',
-                subcategory: 'Anxiety Disorder',
-                type: 'behavioral',
-                options: [
-                    { text: 'Never', score: 0 },
-                    { text: 'Occasionally', score: 0 },
-                    { text: 'Often', score: 1 },
-                    { text: 'Very Often', score: 1 },
-                ],
-            },
-            {
-                id: 'AD-2',
-                text: 'Is excessively worried about future events',
-                subcategory: 'Anxiety Disorder',
-                type: 'behavioral',
-                options: [
-                    { text: 'Never', score: 0 },
-                    { text: 'Occasionally', score: 0 },
-                    { text: 'Often', score: 1 },
-                    { text: 'Very Often', score: 1 },
-                ],
-            },
-            {
-                id: 'AD-3',
-                text: 'Is excessively worried about fitting in with peers',
-                subcategory: 'Anxiety Disorder',
-                type: 'behavioral',
-                options: [
-                    { text: 'Never', score: 0 },
-                    { text: 'Occasionally', score: 0 },
-                    { text: 'Often', score: 1 },
-                    { text: 'Very Often', score: 1 },
-                ],
-            },
-            {
-                id: 'AD-4',
-                text: 'Is excessively worried about family matters',
-                subcategory: 'Anxiety Disorder',
-                type: 'behavioral',
-                options: [
-                    { text: 'Never', score: 0 },
-                    { text: 'Occasionally', score: 0 },
-                    { text: 'Often', score: 1 },
-                    { text: 'Very Often', score: 1 },
-                ],
-            },
-            {
-                id: 'AD-5',
-                text: 'Is excessively worried about their own physical health',
-                subcategory: 'Anxiety Disorder',
-                type: 'behavioral',
-                options: [
-                    { text: 'Never', score: 0 },
-                    { text: 'Occasionally', score: 0 },
-                    { text: 'Often', score: 1 },
-                    { text: 'Very Often', score: 1 },
-                ],
-            },
-            {
-                id: 'AD-6',
-                text: 'Is excessively worried about their safety or the safety of others',
-                subcategory: 'Anxiety Disorder',
-                type: 'behavioral',
-                options: [
-                    { text: 'Never', score: 0 },
-                    { text: 'Occasionally', score: 0 },
-                    { text: 'Often', score: 1 },
-                    { text: 'Very Often', score: 1 },
-                ],
-            },
-            {
-                id: 'AD-7',
-                text: 'Is excessively worried about social situations',
-                subcategory: 'Anxiety Disorder',
-                type: 'behavioral',
-                options: [
-                    { text: 'Never', score: 0 },
-                    { text: 'Occasionally', score: 0 },
-                    { text: 'Often', score: 1 },
-                    { text: 'Very Often', score: 1 },
-                ],
-            },
-            {
-                id: 'AD-8',
-                text: 'Is excessively worried about making mistakes',
-                subcategory: 'Anxiety Disorder',
-                type: 'behavioral',
-                options: [
-                    { text: 'Never', score: 0 },
-                    { text: 'Occasionally', score: 0 },
-                    { text: 'Often', score: 1 },
-                    { text: 'Very Often', score: 1 },
-                ],
-            },
-            {
-                id: 'AD-9',
-                text: 'Is excessively worried about being perfect',
-                subcategory: 'Anxiety Disorder',
-                type: 'behavioral',
-                options: [
-                    { text: 'Never', score: 0 },
-                    { text: 'Occasionally', score: 0 },
-                    { text: 'Often', score: 1 },
-                    { text: 'Very Often', score: 1 },
-                ],
-            },
-        ],
-        performanceQuestions: [
-            {
-                id: 'AD-Perf-1',
-                text: 'Performance in Reading',
-                subcategory: 'Anxiety Disorder',
-                type: 'performance',
-                options: [
-                    { text: '1- very problematic', score: 1 },
-                    { text: '2- problematic', score: 1 },
-                    { text: '3- below average', score: 0 },
-                    { text: '4- average', score: 0 },
-                    { text: '5- good', score: 0 },
-                ],
-            },
-            {
-                id: 'AD-Perf-2',
-                text: 'Performance in Mathematics',
-                subcategory: 'Anxiety Disorder',
-                type: 'performance',
-                options: [
-                    { text: '1- very problematic', score: 1 },
-                    { text: '2- problematic', score: 1 },
-                    { text: '3- below average', score: 0 },
-                    { text: '4- average', score: 0 },
-                    { text: '5- good', score: 0 },
-                ],
-            },
-            {
-                id: 'AD-Perf-3',
-                text: 'Performance in Written expression',
-                subcategory: 'Anxiety Disorder',
-                type: 'performance',
-                options: [
-                    { text: '1- very problematic', score: 1 },
-                    { text: '2- problematic', score: 1 },
-                    { text: '3- below average', score: 0 },
-                    { text: '4- average', score: 0 },
-                    { text: '5- good', score: 0 },
-                ],
-            },
-            {
-                id: 'AD-Perf-4',
-                text: 'Relationships with peers',
-                subcategory: 'Anxiety Disorder',
-                type: 'performance',
-                options: [
-                    { text: '1- very problematic', score: 1 },
-                    { text: '2- problematic', score: 1 },
-                    { text: '3- below average', score: 0 },
-                    { text: '4- average', score: 0 },
-                    { text: '5- good', score: 0 },
-                ],
-            },
-            {
-                id: 'AD-Perf-5',
-                text: 'Following directions/rules',
-                subcategory: 'Anxiety Disorder',
-                type: 'performance',
-                options: [
-                    { text: '1- very problematic', score: 1 },
-                    { text: '2- problematic', score: 1 },
-                    { text: '3- below average', score: 0 },
-                    { text: '4- average', score: 0 },
-                    { text: '5- good', score: 0 },
-                ],
-            },
-            {
-                id: 'AD-Perf-6',
-                text: 'Disrupting class',
-                subcategory: 'Anxiety Disorder',
-                type: 'performance',
-                options: [
-                    { text: '1- very problematic', score: 1 },
-                    { text: '2- problematic', score: 1 },
-                    { text: '3- below average', score: 0 },
-                    { text: '4- average', score: 0 },
-                    { text: '5- good', score: 0 },
-                ],
-            },
-            {
-                id: 'AD-Perf-7',
-                text: 'Assignment completion',
-                subcategory: 'Anxiety Disorder',
-                type: 'performance',
-                options: [
-                    { text: '1- very problematic', score: 1 },
-                    { text: '2- problematic', score: 1 },
-                    { text: '3- below average', score: 0 },
-                    { text: '4- average', score: 0 },
-                    { text: '5- good', score: 0 },
-                ],
-            },
-            {
-                id: 'AD-Perf-8',
-                text: 'Organizational skills',
-                subcategory: 'Anxiety Disorder',
-                type: 'performance',
-                options: [
-                    { text: '1- very problematic', score: 1 },
-                    { text: '2- problematic', score: 1 },
-                    { text: '3- below average', score: 0 },
-                    { text: '4- average', score: 0 },
-                    { text: '5- good', score: 0 },
-                ],
-            },
         ]
     }
 ]; 
