@@ -634,34 +634,36 @@ export const adhdCategories: QuestionCategory[] = [
         ],
     },
     {
-        name: 'Conduct Disorder (CD)',
+        id: 'conduct_disorder',
+        name: 'Conduct Disorder',
+        description: 'A pattern of behavior that violates the basic rights of others or major age-appropriate societal norms or rules.',
         behavioralQuestions: [
             {
-                id: 'CD-1',
-                text: 'Bullies, threatens, or intimidates others',
+                id: 'cd_1',
+                text: 'Often bullies, threatens, or intimidates others',
                 subcategory: 'Conduct Disorder',
                 type: 'behavioral',
                 options: [
                     { text: 'Never', score: 0 },
                     { text: 'Occasionally', score: 0 },
                     { text: 'Often', score: 1 },
-                    { text: 'Very Often', score: 1 },
-                ],
+                    { text: 'Very Often', score: 1 }
+                ]
             },
             {
-                id: 'CD-2',
-                text: 'Initiates physical fights',
+                id: 'cd_2',
+                text: 'Often initiates physical fights',
                 subcategory: 'Conduct Disorder',
                 type: 'behavioral',
                 options: [
                     { text: 'Never', score: 0 },
                     { text: 'Occasionally', score: 0 },
                     { text: 'Often', score: 1 },
-                    { text: 'Very Often', score: 1 },
-                ],
+                    { text: 'Very Often', score: 1 }
+                ]
             },
             {
-                id: 'CD-3',
+                id: 'cd_3',
                 text: 'Has used a weapon that can cause serious physical harm to others',
                 subcategory: 'Conduct Disorder',
                 type: 'behavioral',
@@ -669,11 +671,11 @@ export const adhdCategories: QuestionCategory[] = [
                     { text: 'Never', score: 0 },
                     { text: 'Occasionally', score: 0 },
                     { text: 'Often', score: 1 },
-                    { text: 'Very Often', score: 1 },
-                ],
+                    { text: 'Very Often', score: 1 }
+                ]
             },
             {
-                id: 'CD-4',
+                id: 'cd_4',
                 text: 'Has been physically cruel to people',
                 subcategory: 'Conduct Disorder',
                 type: 'behavioral',
@@ -681,11 +683,11 @@ export const adhdCategories: QuestionCategory[] = [
                     { text: 'Never', score: 0 },
                     { text: 'Occasionally', score: 0 },
                     { text: 'Often', score: 1 },
-                    { text: 'Very Often', score: 1 },
-                ],
+                    { text: 'Very Often', score: 1 }
+                ]
             },
             {
-                id: 'CD-5',
+                id: 'cd_5',
                 text: 'Has been physically cruel to animals',
                 subcategory: 'Conduct Disorder',
                 type: 'behavioral',
@@ -693,11 +695,11 @@ export const adhdCategories: QuestionCategory[] = [
                     { text: 'Never', score: 0 },
                     { text: 'Occasionally', score: 0 },
                     { text: 'Often', score: 1 },
-                    { text: 'Very Often', score: 1 },
-                ],
+                    { text: 'Very Often', score: 1 }
+                ]
             },
             {
-                id: 'CD-6',
+                id: 'cd_6',
                 text: 'Has stolen while confronting a victim',
                 subcategory: 'Conduct Disorder',
                 type: 'behavioral',
@@ -705,11 +707,11 @@ export const adhdCategories: QuestionCategory[] = [
                     { text: 'Never', score: 0 },
                     { text: 'Occasionally', score: 0 },
                     { text: 'Often', score: 1 },
-                    { text: 'Very Often', score: 1 },
-                ],
+                    { text: 'Very Often', score: 1 }
+                ]
             },
             {
-                id: 'CD-7',
+                id: 'cd_7',
                 text: 'Has forced someone into sexual activity',
                 subcategory: 'Conduct Disorder',
                 type: 'behavioral',
@@ -717,35 +719,35 @@ export const adhdCategories: QuestionCategory[] = [
                     { text: 'Never', score: 0 },
                     { text: 'Occasionally', score: 0 },
                     { text: 'Often', score: 1 },
-                    { text: 'Very Often', score: 1 },
-                ],
+                    { text: 'Very Often', score: 1 }
+                ]
             },
             {
-                id: 'CD-8',
-                text: 'Has set fires with intention of causing serious damage',
+                id: 'cd_8',
+                text: 'Has deliberately engaged in fire setting with the intention of causing serious damage',
                 subcategory: 'Conduct Disorder',
                 type: 'behavioral',
                 options: [
                     { text: 'Never', score: 0 },
                     { text: 'Occasionally', score: 0 },
                     { text: 'Often', score: 1 },
-                    { text: 'Very Often', score: 1 },
-                ],
+                    { text: 'Very Often', score: 1 }
+                ]
             },
             {
-                id: 'CD-9',
-                text: 'Has deliberately destroyed others\' property (other than by fire)',
+                id: 'cd_9',
+                text: 'Has deliberately destroyed others\' property',
                 subcategory: 'Conduct Disorder',
                 type: 'behavioral',
                 options: [
                     { text: 'Never', score: 0 },
                     { text: 'Occasionally', score: 0 },
                     { text: 'Often', score: 1 },
-                    { text: 'Very Often', score: 1 },
-                ],
+                    { text: 'Very Often', score: 1 }
+                ]
             },
             {
-                id: 'CD-10',
+                id: 'cd_10',
                 text: 'Has broken into someone else\'s house, building, or car',
                 subcategory: 'Conduct Disorder',
                 type: 'behavioral',
@@ -753,11 +755,11 @@ export const adhdCategories: QuestionCategory[] = [
                     { text: 'Never', score: 0 },
                     { text: 'Occasionally', score: 0 },
                     { text: 'Often', score: 1 },
-                    { text: 'Very Often', score: 1 },
-                ],
+                    { text: 'Very Often', score: 1 }
+                ]
             },
             {
-                id: 'CD-11',
+                id: 'cd_11',
                 text: 'Often lies to obtain goods or favors or to avoid obligations',
                 subcategory: 'Conduct Disorder',
                 type: 'behavioral',
@@ -765,11 +767,11 @@ export const adhdCategories: QuestionCategory[] = [
                     { text: 'Never', score: 0 },
                     { text: 'Occasionally', score: 0 },
                     { text: 'Often', score: 1 },
-                    { text: 'Very Often', score: 1 },
-                ],
+                    { text: 'Very Often', score: 1 }
+                ]
             },
             {
-                id: 'CD-12',
+                id: 'cd_12',
                 text: 'Has stolen items of nontrivial value without confronting a victim',
                 subcategory: 'Conduct Disorder',
                 type: 'behavioral',
@@ -777,151 +779,131 @@ export const adhdCategories: QuestionCategory[] = [
                     { text: 'Never', score: 0 },
                     { text: 'Occasionally', score: 0 },
                     { text: 'Often', score: 1 },
-                    { text: 'Very Often', score: 1 },
-                ],
+                    { text: 'Very Often', score: 1 }
+                ]
             },
             {
-                id: 'CD-13',
-                text: 'Stays out at night despite parental prohibitions (beginning before age 13)',
+                id: 'cd_13',
+                text: 'Often stays out at night despite parental prohibitions',
                 subcategory: 'Conduct Disorder',
                 type: 'behavioral',
                 options: [
                     { text: 'Never', score: 0 },
                     { text: 'Occasionally', score: 0 },
                     { text: 'Often', score: 1 },
-                    { text: 'Very Often', score: 1 },
-                ],
+                    { text: 'Very Often', score: 1 }
+                ]
             },
             {
-                id: 'CD-14',
-                text: 'Has run away from home overnight at least twice while living in parental or parental surrogate home',
+                id: 'cd_14',
+                text: 'Has run away from home overnight at least twice',
                 subcategory: 'Conduct Disorder',
                 type: 'behavioral',
                 options: [
                     { text: 'Never', score: 0 },
                     { text: 'Occasionally', score: 0 },
                     { text: 'Often', score: 1 },
-                    { text: 'Very Often', score: 1 },
-                ],
+                    { text: 'Very Often', score: 1 }
+                ]
             },
             {
-                id: 'CD-15',
-                text: 'Is often truant from school (beginning before age 13)',
+                id: 'cd_15',
+                text: 'Is often truant from school',
                 subcategory: 'Conduct Disorder',
                 type: 'behavioral',
                 options: [
                     { text: 'Never', score: 0 },
                     { text: 'Occasionally', score: 0 },
                     { text: 'Often', score: 1 },
-                    { text: 'Very Often', score: 1 },
-                ],
-            },
+                    { text: 'Very Often', score: 1 }
+                ]
+            }
         ],
         performanceQuestions: [
             {
-                id: 'CD-Perf-1',
-                text: 'Performance in Reading',
+                id: 'cd_perf_1',
+                text: 'How often does the child engage in aggressive behavior towards others?',
                 subcategory: 'Conduct Disorder',
                 type: 'performance',
                 options: [
-                    { text: '1- very problematic', score: 1 },
-                    { text: '2- problematic', score: 1 },
-                    { text: '3- below average', score: 0 },
-                    { text: '4- average', score: 0 },
-                    { text: '5- good', score: 0 },
-                ],
+                    { text: 'Never', score: 0 },
+                    { text: 'Rarely', score: 1 },
+                    { text: 'Sometimes', score: 2 },
+                    { text: 'Often', score: 3 }
+                ]
             },
             {
-                id: 'CD-Perf-2',
-                text: 'Performance in Mathematics',
+                id: 'cd_perf_2',
+                text: 'How often does the child destroy property?',
                 subcategory: 'Conduct Disorder',
                 type: 'performance',
                 options: [
-                    { text: '1- very problematic', score: 1 },
-                    { text: '2- problematic', score: 1 },
-                    { text: '3- below average', score: 0 },
-                    { text: '4- average', score: 0 },
-                    { text: '5- good', score: 0 },
-                ],
+                    { text: 'Never', score: 0 },
+                    { text: 'Rarely', score: 1 },
+                    { text: 'Sometimes', score: 2 },
+                    { text: 'Often', score: 3 }
+                ]
             },
             {
-                id: 'CD-Perf-3',
-                text: 'Performance in Written expression',
+                id: 'cd_perf_3',
+                text: 'How often does the child steal or lie?',
                 subcategory: 'Conduct Disorder',
                 type: 'performance',
                 options: [
-                    { text: '1- very problematic', score: 1 },
-                    { text: '2- problematic', score: 1 },
-                    { text: '3- below average', score: 0 },
-                    { text: '4- average', score: 0 },
-                    { text: '5- good', score: 0 },
-                ],
+                    { text: 'Never', score: 0 },
+                    { text: 'Rarely', score: 1 },
+                    { text: 'Sometimes', score: 2 },
+                    { text: 'Often', score: 3 }
+                ]
             },
             {
-                id: 'CD-Perf-4',
-                text: 'Relationships with peers',
+                id: 'cd_perf_4',
+                text: 'How often does the child violate rules or curfews?',
                 subcategory: 'Conduct Disorder',
                 type: 'performance',
                 options: [
-                    { text: '1- very problematic', score: 1 },
-                    { text: '2- problematic', score: 1 },
-                    { text: '3- below average', score: 0 },
-                    { text: '4- average', score: 0 },
-                    { text: '5- good', score: 0 },
-                ],
+                    { text: 'Never', score: 0 },
+                    { text: 'Rarely', score: 1 },
+                    { text: 'Sometimes', score: 2 },
+                    { text: 'Often', score: 3 }
+                ]
             },
             {
-                id: 'CD-Perf-5',
-                text: 'Following directions/rules',
+                id: 'cd_perf_5',
+                text: 'How often does the child show remorse for their actions?',
                 subcategory: 'Conduct Disorder',
                 type: 'performance',
                 options: [
-                    { text: '1- very problematic', score: 1 },
-                    { text: '2- problematic', score: 1 },
-                    { text: '3- below average', score: 0 },
-                    { text: '4- average', score: 0 },
-                    { text: '5- good', score: 0 },
-                ],
+                    { text: 'Always', score: 0 },
+                    { text: 'Usually', score: 1 },
+                    { text: 'Sometimes', score: 2 },
+                    { text: 'Never', score: 3 }
+                ]
             },
             {
-                id: 'CD-Perf-6',
-                text: 'Disrupting class',
+                id: 'cd_perf_6',
+                text: 'How often does the child show empathy towards others?',
                 subcategory: 'Conduct Disorder',
                 type: 'performance',
                 options: [
-                    { text: '1- very problematic', score: 1 },
-                    { text: '2- problematic', score: 1 },
-                    { text: '3- below average', score: 0 },
-                    { text: '4- average', score: 0 },
-                    { text: '5- good', score: 0 },
-                ],
+                    { text: 'Always', score: 0 },
+                    { text: 'Usually', score: 1 },
+                    { text: 'Sometimes', score: 2 },
+                    { text: 'Never', score: 3 }
+                ]
             },
             {
-                id: 'CD-Perf-7',
-                text: 'Assignment completion',
+                id: 'cd_perf_7',
+                text: 'How often does the child take responsibility for their actions?',
                 subcategory: 'Conduct Disorder',
                 type: 'performance',
                 options: [
-                    { text: '1- very problematic', score: 1 },
-                    { text: '2- problematic', score: 1 },
-                    { text: '3- below average', score: 0 },
-                    { text: '4- average', score: 0 },
-                    { text: '5- good', score: 0 },
-                ],
-            },
-            {
-                id: 'CD-Perf-8',
-                text: 'Organizational skills',
-                subcategory: 'Conduct Disorder',
-                type: 'performance',
-                options: [
-                    { text: '1- very problematic', score: 1 },
-                    { text: '2- problematic', score: 1 },
-                    { text: '3- below average', score: 0 },
-                    { text: '4- average', score: 0 },
-                    { text: '5- good', score: 0 },
-                ],
-            },
+                    { text: 'Always', score: 0 },
+                    { text: 'Usually', score: 1 },
+                    { text: 'Sometimes', score: 2 },
+                    { text: 'Never', score: 3 }
+                ]
+            }
         ]
     },
     {

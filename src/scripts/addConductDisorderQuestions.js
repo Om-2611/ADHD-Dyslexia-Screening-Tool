@@ -11,38 +11,44 @@ const firebaseConfig = {
 };
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
-const DEFAULT_BEHAVIORAL_OPTIONS = {
-    never: 0,
-    occasionally: 1,
-    often: 2,
-    very_often: 3
-};
-const conductDisorderQuestions = [
-    "Bullies, threatens, or intimidates others",
-    "Initiates physical fights",
-    "Lies to obtain goods for favors or to avoid obligations (\"cons\" others)",
-    "Is truant from school (skips school) without permission",
-    "Is physically cruel to people",
-    "Has stolen items of nontrivial value",
-    "Deliberately destroys others' property",
-    "Has used a weapon that can cause serious harm (bat, knife, brick, gun)",
-    "Is physically cruel to animals",
-    "Has deliberately set fires to cause damage",
-    "Has broken into someone else's home, business, or car",
-    "Has stayed out at night without permission",
-    "Has run away from home overnight",
-    "Has forced someone into sexual activity"
+const DEFAULT_BEHAVIORAL_OPTIONS = [
+    { text: 'Never', score: 0 },
+    { text: 'Occasionally', score: 0 },
+    { text: 'Often', score: 1 },
+    { text: 'Very Often', score: 1 }
 ];
-async function deleteExistingConductQuestions() {
+const conductDisorderQuestions = [
+    "Often bullies, threatens, or intimidates others",
+    "Often initiates physical fights",
+    "Has used a weapon that can cause serious physical harm to others",
+    "Has been physically cruel to people",
+    "Has been physically cruel to animals",
+    "Has stolen while confronting a victim",
+    "Has forced someone into sexual activity",
+    "Has deliberately engaged in fire setting with the intention of causing serious damage",
+    "Has deliberately destroyed others' property",
+    "Has broken into someone else's house, building, or car",
+    "Often lies to obtain goods or favors or to avoid obligations",
+    "Has stolen items of nontrivial value without confronting a victim",
+    "Often stays out at night despite parental prohibitions",
+    "Has run away from home overnight at least twice",
+    "Is often truant from school"
+];
+async function deleteExistingConductDisorderQuestions() {
     try {
         const questionsRef = collection(db, 'questions');
-        const q = query(questionsRef, where('category', '==', 'adhd'), where('subcategory', '==', 'conduct_disorder'));
+        const q = query(
+            questionsRef, 
+            where('category', '==', 'adhd'),
+            where('subcategory', '==', 'Conduct Disorder')
+        );
+        
         const querySnapshot = await getDocs(q);
         const deletePromises = querySnapshot.docs.map(doc => deleteDoc(doc.ref));
         await Promise.all(deletePromises);
+        
         console.log('Successfully deleted existing Conduct Disorder questions');
-    }
-    catch (error) {
+    } catch (error) {
         console.error('Error deleting existing questions:', error);
         throw error;
     }
@@ -50,25 +56,27 @@ async function deleteExistingConductQuestions() {
 async function addConductDisorderQuestions() {
     try {
         // First delete existing questions
-        await deleteExistingConductQuestions();
+        await deleteExistingConductDisorderQuestions();
+
         const questionsRef = collection(db, 'questions');
+        
         for (const questionText of conductDisorderQuestions) {
             const questionData = {
                 text: questionText,
                 category: 'adhd',
-                subcategory: 'conduct_disorder',
+                subcategory: 'Conduct Disorder',
                 questionType: 'behavioral',
                 options: DEFAULT_BEHAVIORAL_OPTIONS,
                 createdAt: serverTimestamp(),
                 updatedAt: serverTimestamp()
             };
+
             const docRef = await addDoc(questionsRef, questionData);
             console.log(`Added question with ID: ${docRef.id}`);
             console.log(`Question text: ${questionText}`);
         }
         console.log('Successfully added all Conduct Disorder behavioral questions');
-    }
-    catch (error) {
+    } catch (error) {
         console.error('Error adding questions:', error);
     }
 }
