@@ -11,12 +11,12 @@ const firebaseConfig = {
 };
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
-const DEFAULT_BEHAVIORAL_OPTIONS = {
-    never: 0,
-    occasionally: 1,
-    often: 2,
-    very_often: 3
-};
+const DEFAULT_BEHAVIORAL_OPTIONS = [
+    { text: 'Never', score: 0 },
+    { text: 'Occasionally', score: 0 },
+    { text: 'Often', score: 1 },
+    { text: 'Very Often', score: 1 }
+];
 const oddQuestions = [
     "Argues with adults",
     "Loses temper",
@@ -30,10 +30,16 @@ const oddQuestions = [
 async function deleteExistingODDQuestions() {
     try {
         const questionsRef = collection(db, 'questions');
-        const q = query(questionsRef, where('category', '==', 'adhd'), where('subcategory', '==', 'oppositional_defiant_disorder'));
+        const q = query(
+            questionsRef, 
+            where('category', '==', 'adhd'),
+            where('subcategory', '==', 'Oppositional Defiant Disorder')
+        );
+        
         const querySnapshot = await getDocs(q);
         const deletePromises = querySnapshot.docs.map(doc => deleteDoc(doc.ref));
         await Promise.all(deletePromises);
+        
         console.log('Successfully deleted existing ODD questions');
     }
     catch (error) {
@@ -45,17 +51,20 @@ async function addODDQuestions() {
     try {
         // First delete existing questions
         await deleteExistingODDQuestions();
+
         const questionsRef = collection(db, 'questions');
+        
         for (const questionText of oddQuestions) {
             const questionData = {
                 text: questionText,
                 category: 'adhd',
-                subcategory: 'oppositional_defiant_disorder',
+                subcategory: 'Oppositional Defiant Disorder',
                 questionType: 'behavioral',
                 options: DEFAULT_BEHAVIORAL_OPTIONS,
                 createdAt: serverTimestamp(),
                 updatedAt: serverTimestamp()
             };
+
             const docRef = await addDoc(questionsRef, questionData);
             console.log(`Added question with ID: ${docRef.id}`);
             console.log(`Question text: ${questionText}`);

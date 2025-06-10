@@ -440,11 +440,11 @@ export const adhdCategories: QuestionCategory[] = [
         ]
     },
     {
-        name: 'Oppositional Defiant Disorder (ODD)',
+        name: 'Oppositional Defiant Disorder',
         behavioralQuestions: [
             {
                 id: 'ODD-1',
-                text: 'Often loses temper',
+                text: 'Argues with adults',
                 subcategory: 'Oppositional Defiant Disorder',
                 type: 'behavioral',
                 options: [
@@ -456,7 +456,7 @@ export const adhdCategories: QuestionCategory[] = [
             },
             {
                 id: 'ODD-2',
-                text: 'Is often touchy or easily annoyed',
+                text: 'Loses temper',
                 subcategory: 'Oppositional Defiant Disorder',
                 type: 'behavioral',
                 options: [
@@ -468,7 +468,7 @@ export const adhdCategories: QuestionCategory[] = [
             },
             {
                 id: 'ODD-3',
-                text: 'Is often angry and resentful',
+                text: 'Actively defies or refuses to comply with adults\' requests or rules',
                 subcategory: 'Oppositional Defiant Disorder',
                 type: 'behavioral',
                 options: [
@@ -480,7 +480,7 @@ export const adhdCategories: QuestionCategory[] = [
             },
             {
                 id: 'ODD-4',
-                text: 'Actively defies or refuses to comply with adult requests or rules',
+                text: 'Deliberately annoys people',
                 subcategory: 'Oppositional Defiant Disorder',
                 type: 'behavioral',
                 options: [
@@ -492,7 +492,7 @@ export const adhdCategories: QuestionCategory[] = [
             },
             {
                 id: 'ODD-5',
-                text: 'Deliberately annoys others',
+                text: 'Blames others for his or her mistakes or misbehaviors',
                 subcategory: 'Oppositional Defiant Disorder',
                 type: 'behavioral',
                 options: [
@@ -504,7 +504,7 @@ export const adhdCategories: QuestionCategory[] = [
             },
             {
                 id: 'ODD-6',
-                text: 'Blames others for his or her mistakes or misbehavior',
+                text: 'Is touchy or easily annoyed by others',
                 subcategory: 'Oppositional Defiant Disorder',
                 type: 'behavioral',
                 options: [
@@ -516,7 +516,7 @@ export const adhdCategories: QuestionCategory[] = [
             },
             {
                 id: 'ODD-7',
-                text: 'Is often spiteful or vindictive',
+                text: 'Is angry or resentful',
                 subcategory: 'Oppositional Defiant Disorder',
                 type: 'behavioral',
                 options: [
@@ -528,7 +528,7 @@ export const adhdCategories: QuestionCategory[] = [
             },
             {
                 id: 'ODD-8',
-                text: 'Has stolen or shoplifted',
+                text: 'Is spiteful and vindictive',
                 subcategory: 'Oppositional Defiant Disorder',
                 type: 'behavioral',
                 options: [
@@ -631,20 +631,7 @@ export const adhdCategories: QuestionCategory[] = [
                     { text: '5- good', score: 0 },
                 ],
             },
-            {
-                id: 'ODD-Perf-8',
-                text: 'Organizational skills',
-                subcategory: 'Oppositional Defiant Disorder',
-                type: 'performance',
-                options: [
-                    { text: '1- very problematic', score: 1 },
-                    { text: '2- problematic', score: 1 },
-                    { text: '3- below average', score: 0 },
-                    { text: '4- average', score: 0 },
-                    { text: '5- good', score: 0 },
-                ],
-            },
-        ]
+        ],
     },
     {
         name: 'Conduct Disorder (CD)',
