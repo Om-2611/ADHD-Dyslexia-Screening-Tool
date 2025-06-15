@@ -1,4 +1,22 @@
-export const dyslexiaCategories = [
+interface Option {
+  text: string;
+  score: number;
+}
+
+interface Question {
+  id: string;
+  text: string;
+  subcategory: string;
+  options: Option[];
+  type?: string; // Optional type for comprehensive questions
+}
+
+interface Category {
+  name: string;
+  questions: Question[];
+}
+
+export const dyslexiaCategories: Category[] = [
   {
     name: 'Basic Dyslexia Screening',
     questions: [
