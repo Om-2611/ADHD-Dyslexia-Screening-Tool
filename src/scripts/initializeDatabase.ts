@@ -21,14 +21,6 @@ const DEFAULT_BEHAVIORAL_OPTIONS = {
   very_often: 3
 };
 
-const DEFAULT_PERFORMANCE_OPTIONS = {
-  very_poor: 1,
-  poor: 2,
-  average: 3,
-  good: 4,
-  excellent: 5
-};
-
 const adhdQuestions = [
   {
     text: "Does not pay attention to details or makes careless mistakes",

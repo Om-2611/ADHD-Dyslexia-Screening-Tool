@@ -52,7 +52,10 @@ export type ADHDSubcategory =
   | 'predominantly_hyperactive'
   | 'oppositional_defiant_disorder'
   | 'conduct_disorder'
-  | 'anxiety_disorder';
+  | 'anxiety_disorder'
+  | 'executive_function'
+  | 'social_skills'
+  | 'emotional_regulation';
 
 export type DyslexiaSubcategory = 
   | 'phonological_awareness'
@@ -109,6 +112,18 @@ export const ADHD_QUESTION_LIMITS = {
   },
   anxiety_disorder: {
     behavioral: 7,
+    performance: 8
+  },
+  executive_function: {
+    behavioral: 8,
+    performance: 8
+  },
+  social_skills: {
+    behavioral: 8,
+    performance: 8
+  },
+  emotional_regulation: {
+    behavioral: 8,
     performance: 8
   }
 } as const;
@@ -605,7 +620,6 @@ export const getAllTestResults = async (
 // Get a specific test result by ID
 export const getTestResultById = async (testId: string): Promise<TestResult | null> => {
   try {
-    const testRef = doc(db, 'testResults', testId);
     const testDoc = await getDocs(query(collection(db, 'testResults'), where('__name__', '==', testId)));
     
     if (testDoc.empty) {

@@ -3,7 +3,6 @@ import { useParams, useLocation } from 'react-router-dom';
 import Card from '../../components/ui/Card';
 import Button from '../../components/ui/Button'; // Assuming Button component exists
 import jsPDF from 'jspdf';
-import html2canvas from 'html2canvas';
 
 interface Answer {
   value: number;
@@ -172,19 +171,10 @@ const TestResults: React.FC = () => {
     if (!resultRef.current) return;
 
     try {
-      // Create a canvas from the result content
-      const canvas = await html2canvas(resultRef.current);
-      const imgData = canvas.toDataURL('image/png');
-
       // Create PDF
       const pdf = new jsPDF('p', 'mm', 'a4');
       const pdfWidth = pdf.internal.pageSize.getWidth();
       const pdfHeight = pdf.internal.pageSize.getHeight();
-      const imgWidth = canvas.width;
-      const imgHeight = canvas.height;
-      const ratio = Math.min(pdfWidth / imgWidth, pdfHeight / imgHeight);
-      const imgX = (pdfWidth - imgWidth * ratio) / 2;
-      const imgY = 30;
 
       // Add test information
       pdf.setFontSize(20);
@@ -220,14 +210,14 @@ const TestResults: React.FC = () => {
         pdf.text('Detailed Answers', pdfWidth / 2, 20, { align: 'center' });
         
         let yPosition = 40;
-        Object.entries(state.answers).forEach(([questionId, answer], index) => {
+        Object.entries(state.answers).forEach(([questionId, answer]) => {
           if (yPosition > pdfHeight - 20) {
             pdf.addPage();
             yPosition = 20;
           }
           
           pdf.setFontSize(12);
-          pdf.text(`Question ${index + 1}:`, 20, yPosition);
+          pdf.text(`Question ${questionId}:`, 20, yPosition);
           yPosition += 7;
           
           // Add question text if available

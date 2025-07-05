@@ -6,7 +6,6 @@ import Button from '../../components/ui/Button';
 import { 
   Calendar, 
   Clock, 
-  Download, 
   LogOut, 
   User as UserIcon, 
   Edit, 
@@ -14,7 +13,7 @@ import {
   FileText
 } from 'lucide-react';
 import { db } from '../../config/firebase.ts';
-import { collection, query, where, orderBy, getDocs, doc, updateDoc, getDoc, setDoc, serverTimestamp } from 'firebase/firestore';
+import { collection, query, where, orderBy, getDocs, doc, getDoc, setDoc, serverTimestamp } from 'firebase/firestore';
 import { generateTestPDF } from '../../utils/pdfGenerator';
 import { createUserDocument } from '../../services/firebase';
 

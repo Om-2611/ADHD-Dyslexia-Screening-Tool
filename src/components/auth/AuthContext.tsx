@@ -51,8 +51,14 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   };
 
   const signup = async (email: string, password: string) => {
-    const result = await createUserWithEmailAndPassword(auth, email, password);
-    await createUserDocument(result.user);
+    try {
+      const result = await createUserWithEmailAndPassword(auth, email, password);
+      await createUserDocument(result.user);
+    } catch (error) {
+      console.error('Signup error in AuthContext:', error);
+      // Re-throw the error so it can be handled by the component
+      throw error;
+    }
   };
 
   const logout = async () => {

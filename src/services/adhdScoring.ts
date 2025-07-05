@@ -104,6 +104,9 @@ export function calculateADHDResult(answers: ADHDAnswer[]): ADHDTestResult {
         result.emotionalRegulation.totalBehavioralQuestions++;
         if (isHighScore) result.emotionalRegulation.behavioralCount++;
         break;
+      default:
+        // If these cases are not valid ADHDSubcategory, move them to the default case or update the ADHDSubcategory type to include them
+        break;
     }
   });
 

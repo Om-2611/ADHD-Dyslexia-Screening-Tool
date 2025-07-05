@@ -15,6 +15,28 @@ const Signup: React.FC = () => {
   const { signup } = useAuth();
   const navigate = useNavigate();
 
+  const getErrorMessage = (error: any): string => {
+    if (error?.code) {
+      switch (error.code) {
+        case 'auth/email-already-in-use':
+          return 'This email address is already registered. Please try logging in instead.';
+        case 'auth/invalid-email':
+          return 'Please enter a valid email address.';
+        case 'auth/weak-password':
+          return 'Password is too weak. Please choose a stronger password.';
+        case 'auth/operation-not-allowed':
+          return 'Email/password accounts are not enabled. Please contact support.';
+        case 'auth/network-request-failed':
+          return 'Network error. Please check your internet connection and try again.';
+        case 'auth/too-many-requests':
+          return 'Too many failed attempts. Please try again later.';
+        default:
+          return `Account creation failed: ${error.message || 'Unknown error occurred.'}`;
+      }
+    }
+    return 'Failed to create an account. Please try again.';
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
@@ -29,11 +51,19 @@ const Signup: React.FC = () => {
     try {
       setError('');
       setLoading(true);
+      console.log('Attempting to create account for:', email);
       await signup(email, password);
+      console.log('Account created successfully');
       navigate('/');
-    } catch (err) {
-      setError('Failed to create an account. Email may already be in use.');
-      console.error(err);
+    } catch (err: any) {
+      console.error('Detailed signup error:', {
+        error: err,
+        code: err?.code,
+        message: err?.message,
+        email: email
+      });
+      const errorMessage = getErrorMessage(err);
+      setError(errorMessage);
     } finally {
       setLoading(false);
     }
