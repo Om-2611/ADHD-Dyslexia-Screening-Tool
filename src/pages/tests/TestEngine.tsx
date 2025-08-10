@@ -4,13 +4,8 @@ import Card from '../../components/ui/Card';
 import Button from '../../components/ui/Button';
 import { ArrowLeft, ArrowRight } from 'lucide-react';
 import { ADHDSubcategory } from '../../services/firebase';
-import { adhdCategories } from '../../data/adhdQuestions';
 import adhdI18n from '../../i18n/adhdI18n';
 import dyslexiaI18n from '../../i18n/dyslexiaI18n';
-import { db } from '../../config/firebase.ts';
-import { useAuth } from '../../components/auth/AuthContext';
-import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
-import { updateUserTestCount } from '../../services/firebase';
 
 interface TestParams {
   [key: string]: string | undefined;
@@ -52,8 +47,6 @@ const TestEngine: React.FC = () => {
     questionText: string;
   }>>({});
   const [startTime] = useState<Date>(new Date());
-
-  const { currentUser } = useAuth();
 
   useEffect(() => {
     // Listen for language changes

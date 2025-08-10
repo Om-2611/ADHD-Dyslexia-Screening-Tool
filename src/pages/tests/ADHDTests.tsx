@@ -1,4 +1,4 @@
-import { I18nextProvider, useTranslation } from 'react-i18next';
+import { I18nextProvider } from 'react-i18next';
 import adhdI18n from '../../i18n/adhdI18n';
 import React from 'react';
 import ADHDSubcategorySelection from './ADHDSubcategorySelection';
