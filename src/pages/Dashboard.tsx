@@ -38,23 +38,27 @@ const Dashboard: React.FC = () => {
              {/* Navigation */}
        <nav className="bg-white shadow-sm border-b">
          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-           <div className="flex justify-between items-center h-16">
-             <div className="flex items-center">
+           <div className="flex flex-col sm:flex-row justify-between items-center py-4 sm:h-16 space-y-4 sm:space-y-0">
+             <div className="flex items-center w-full sm:w-auto justify-center sm:justify-start">
                <Brain className="h-8 w-8 text-blue-600 mr-2" />
                <span className="text-xl font-bold text-gray-900">{t('navigation.brand')}</span>
              </div>
-             <div className="flex items-center space-x-4">
-               <LanguageSwitcher />
-               <Link to="/login">
-                 <Button variant="outline" className="px-4 py-2">
-                   {t('common.login')}
-                 </Button>
-               </Link>
-               <Link to="/signup">
-                 <Button className="px-4 py-2">
-                   {t('common.signup')}
-                 </Button>
-               </Link>
+             <div className="flex flex-col sm:flex-row items-center space-y-4 sm:space-y-0 sm:space-x-4 w-full sm:w-auto">
+               <div className="w-full sm:w-auto flex justify-center">
+                 <LanguageSwitcher />
+               </div>
+               <div className="flex space-x-3 w-full sm:w-auto justify-center">
+                 <Link to="/login" className="w-24 sm:w-auto">
+                   <Button variant="outline" className="px-4 py-2 w-full">
+                     {t('common.login')}
+                   </Button>
+                 </Link>
+                 <Link to="/signup" className="w-24 sm:w-auto">
+                   <Button className="px-4 py-2 w-full">
+                     {t('common.signup')}
+                   </Button>
+                 </Link>
+               </div>
              </div>
            </div>
          </div>
