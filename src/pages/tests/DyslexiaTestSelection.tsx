@@ -8,7 +8,24 @@ import { FileText, BookOpen, ArrowRight } from 'lucide-react';
 import Button from '../../components/ui/Button';
 
 const DyslexiaTests: React.FC = () => {
-  const { t } = useTranslation(undefined, { i18n: dyslexiaI18n });
+  const { t, i18n } = useTranslation(undefined, { i18n: dyslexiaI18n });
+
+  // Effect to sync language changes
+  React.useEffect(() => {
+    const savedLanguage = localStorage.getItem('app-language');
+    if (savedLanguage && i18n.language !== savedLanguage) {
+      i18n.changeLanguage(savedLanguage);
+    }
+
+    const handleStorageChange = (e: StorageEvent) => {
+      if (e.key === 'app-language' && e.newValue) {
+        i18n.changeLanguage(e.newValue);
+      }
+    };
+
+    window.addEventListener('storage', handleStorageChange);
+    return () => window.removeEventListener('storage', handleStorageChange);
+  }, [i18n]);
 
   const tests = [
     {

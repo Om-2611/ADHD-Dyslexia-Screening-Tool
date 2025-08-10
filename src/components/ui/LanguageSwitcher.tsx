@@ -1,35 +1,17 @@
 import React from 'react';
-import { useTranslation } from 'react-i18next';
 import { Globe } from 'lucide-react';
+import { useLanguageManager } from '../../hooks/useLanguageManager';
 
 const LanguageSwitcher: React.FC = () => {
   try {
-    const { i18n } = useTranslation();
-
-    const languages = [
-      { code: 'en', name: 'English', flag: '🇺🇸' },
-      { code: 'hi', name: 'हिंदी', flag: '🇮🇳' },
-      { code: 'te', name: 'తెలుగు', flag: '🇮🇳' }
-    ];
+    const { currentLanguage, changeLanguage, languages } = useLanguageManager();
 
     const handleLanguageChange = (languageCode: string) => {
-      i18n.changeLanguage(languageCode);
+      changeLanguage(languageCode);
     };
-
-    // Ensure we have a valid language
-    const currentLanguage = i18n.language || 'en';
 
     // Debug: Log to console to verify component is rendering
     console.log('LanguageSwitcher rendering, current language:', currentLanguage);
-
-    // Simple fallback if i18n is not available
-    if (!i18n) {
-      return (
-        <div className="bg-red-500 text-white p-3 rounded-lg border-2 border-red-700">
-          LANGUAGE SWITCHER (i18n not available)
-        </div>
-      );
-    }
 
     return (
       <div className="flex flex-col md:flex-row items-center gap-2" title="Change Language">
