@@ -18,5 +18,5 @@ export default defineConfig({
     port: 5174,
     strictPort: true, // Don't try other ports if 5174 is taken
   },
-  base: '/ADHD-Dyslexia-Screening-Tool/',
+  base: '/',
 });
