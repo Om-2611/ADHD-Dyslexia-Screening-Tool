@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useAuth } from '../auth/AuthContext';
 import { Brain, FileText, Home, LogOut, Shield, User, Menu, X } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 import Button from '../ui/Button';
 
 interface LayoutProps {
@@ -13,6 +14,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
   const location = useLocation();
   const navigate = useNavigate();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const { t, i18n } = useTranslation();
 
   const handleLogout = async () => {
     try {
@@ -41,11 +43,14 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
     );
   };
 
+  // Remove LanguageSwitcher from Layout after language is selected on Home
+  // Only show language label, not switcher
+
   return (
     <div className="min-h-screen bg-gray-50 flex flex-col">
       {/* Header */}
       <header className="bg-white shadow-sm sticky top-0 z-10">
-        <div className="container mx-auto px-4 h-16 flex items-center justify-between">
+        <div className="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between relative overflow-visible">
           <div className="flex items-center space-x-2">
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
@@ -59,11 +64,18 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
             </button>
             <Link to="/" className="flex items-center space-x-2">
               <Brain className="h-8 w-8 text-blue-600" />
-              <span className="text-xl font-bold text-gray-900 hidden sm:inline">SCREENING TOOL FOR ADHD AND DYSLEXIA</span>
-              <span className="text-xl font-bold text-gray-900 sm:hidden">SCREENING TOOL</span>
+              <span className="text-xl font-bold text-gray-900 hidden sm:inline">{t('navigation.brand')}</span>
+              <span className="text-xl font-bold text-gray-900 sm:hidden">{t('navigation.brand')}</span>
             </Link>
           </div>
-          <div className="flex items-center space-x-4">
+          <div className="flex items-center space-x-4 flex-shrink-0">
+            {/* LanguageSwitcher removed, language is set on Home and used throughout */}
+            {/* Language label to the left of user email */}
+            <div className="flex items-center space-x-2 mr-2">
+              <span className="text-sm font-medium text-gray-700">
+                {i18n.language === 'en' ? 'English' : i18n.language === 'hi' ? 'हिंदी' : i18n.language === 'te' ? 'తెలుగు' : i18n.language}
+              </span>
+            </div>
             {currentUser ? (
               <>
                 <Link to="/profile" className="text-sm text-gray-600 hover:text-gray-900 hidden sm:block">
@@ -76,18 +88,18 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
                   className="flex items-center space-x-1"
                 >
                   <LogOut className="h-4 w-4" />
-                  <span className="hidden sm:inline">Logout</span>
+                  <span className="hidden sm:inline">{t('navigation.logout')}</span>
                 </Button>
               </>
             ) : (
               <>
                 <Link to="/login">
                   <Button variant="outline" size="sm">
-                    Login
+                    {t('navigation.login')}
                   </Button>
                 </Link>
                 <Link to="/signup">
-                  <Button size="sm">Sign Up</Button>
+                  <Button size="sm">{t('navigation.signup')}</Button>
                 </Link>
               </>
             )}
@@ -111,12 +123,12 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
             isMobileMenuOpen ? 'translate-x-0' : '-translate-x-full md:translate-x-0'
           } z-30 md:relative md:translate-x-0`}>
             <nav className="flex flex-col space-y-2">
-              <NavItem to="/home" text="Home" icon={<Home className="h-5 w-5" />} />
-              <NavItem to="/profile" text="Profile" icon={<User className="h-5 w-5" />} />
-              <NavItem to="/adhd" text="ADHD Screening" icon={<Brain className="h-5 w-5" />} />
-              <NavItem to="/dyslexia" text="Dyslexia Screening" icon={<FileText className="h-5 w-5" />} />
+              <NavItem to="/home" text={t('navigation.home')} icon={<Home className="h-5 w-5" />} />
+              <NavItem to="/profile" text={t('navigation.profile')} icon={<User className="h-5 w-5" />} />
+              <NavItem to="/adhd" text={t('navigation.adhdScreening')} icon={<Brain className="h-5 w-5" />} />
+              <NavItem to="/dyslexia" text={t('navigation.dyslexiaScreening')} icon={<FileText className="h-5 w-5" />} />
               {currentUser.email === 'admin@example.com' && (
-                <NavItem to="/admin" text="Admin Dashboard" icon={<Shield className="h-5 w-5" />} />
+                <NavItem to="/admin" text={t('navigation.adminDashboard')} icon={<Shield className="h-5 w-5" />} />
               )}
             </nav>
           </aside>

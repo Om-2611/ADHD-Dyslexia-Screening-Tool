@@ -1,0 +1,243 @@
+{
+  "Basic Dyslexia Screening": {
+    "questions": [
+      {
+        "id": "BDS-1",
+        "text": "Does your child struggle to learn the alphabet or recognize letters?",
+        "options": [
+          { "text": "no", "score": 0 },
+          { "text": "not often", "score": 0 },
+          { "text": "sometimes", "score": 1 },
+          { "text": "often", "score": 1 },
+          { "text": "yes", "score": 1 }
+        ]
+      },
+      {
+        "id": "BDS-2",
+        "text": "Does your child have difficulty pronouncing words correctly (e.g., saying 'aminal' instead of 'animal')?",
+        "options": [
+          { "text": "no", "score": 0 },
+          { "text": "not often", "score": 0 },
+          { "text": "sometimes", "score": 1 },
+          { "text": "often", "score": 1 },
+          { "text": "yes", "score": 1 }
+        ]
+      },
+      {
+        "id": "BDS-3",
+        "text": "Does your child find it hard to remember nursery rhymes or simple songs?",
+        "options": [
+          { "text": "no", "score": 0 },
+          { "text": "not often", "score": 0 },
+          { "text": "sometimes", "score": 1 },
+          { "text": "often", "score": 1 },
+          { "text": "yes", "score": 1 }
+        ]
+      },
+      {
+        "id": "BDS-4",
+        "text": "Does your child have trouble learning and remembering new words?",
+        "options": [
+          { "text": "no", "score": 0 },
+          { "text": "not often", "score": 0 },
+          { "text": "sometimes", "score": 1 },
+          { "text": "often", "score": 1 },
+          { "text": "yes", "score": 1 }
+        ]
+      },
+      {
+        "id": "BDS-5",
+        "text": "Does your child struggle with reading aloud fluently?",
+        "options": [
+          { "text": "no", "score": 0 },
+          { "text": "not often", "score": 0 },
+          { "text": "sometimes", "score": 1 },
+          { "text": "often", "score": 1 },
+          { "text": "yes", "score": 1 }
+        ]
+      },
+      {
+        "id": "BDS-6",
+        "text": "Does your child frequently confuse letters such as 'b' and 'd' or 'p' and 'q'?",
+        "options": [
+          { "text": "no", "score": 0 },
+          { "text": "not often", "score": 0 },
+          { "text": "sometimes", "score": 1 },
+          { "text": "often", "score": 1 },
+          { "text": "yes", "score": 1 }
+        ]
+      },
+      {
+        "id": "BDS-7",
+        "text": "Does your child have difficulty spelling simple words?",
+        "options": [
+          { "text": "no", "score": 0 },
+          { "text": "not often", "score": 0 },
+          { "text": "sometimes", "score": 1 },
+          { "text": "often", "score": 1 },
+          { "text": "yes", "score": 1 }
+        ]
+      },
+      {
+        "id": "BDS-8",
+        "text": "Does your child take longer than peers to complete reading and writing tasks?",
+        "options": [
+          { "text": "no", "score": 0 },
+          { "text": "not often", "score": 0 },
+          { "text": "sometimes", "score": 1 },
+          { "text": "often", "score": 1 },
+          { "text": "yes", "score": 1 }
+        ]
+      },
+      {
+        "id": "BDS-9",
+        "text": "Does your child mix up letters or numbers when writing?",
+        "options": [
+          { "text": "no", "score": 0 },
+          { "text": "not often", "score": 0 },
+          { "text": "sometimes", "score": 1 },
+          { "text": "often", "score": 1 },
+          { "text": "yes", "score": 1 }
+        ]
+      },
+      {
+        "id": "BDS-10",
+        "text": "Does your child often write letters or numbers in reverse (e.g., 'E' instead of '3')?",
+        "options": [
+          { "text": "no", "score": 0 },
+          { "text": "not often", "score": 0 },
+          { "text": "sometimes", "score": 1 },
+          { "text": "often", "score": 1 },
+          { "text": "yes", "score": 1 }
+        ]
+      },
+      {
+        "id": "BDS-11",
+        "text": "Does your child have trouble remembering the sequence of the alphabet or days of the week?",
+        "options": [
+          { "text": "no", "score": 0 },
+          { "text": "not often", "score": 0 },
+          { "text": "sometimes", "score": 1 },
+          { "text": "often", "score": 1 },
+          { "text": "yes", "score": 1 }
+        ]
+      },
+      {
+        "id": "BDS-12",
+        "text": "Does your child struggle with distinguishing similar-sounding words?",
+        "options": [
+          { "text": "no", "score": 0 },
+          { "text": "not often", "score": 0 },
+          { "text": "sometimes", "score": 1 },
+          { "text": "often", "score": 1 },
+          { "text": "yes", "score": 1 }
+        ]
+      },
+      {
+        "id": "BDS-13",
+        "text": "Do you avoid reading and writing whenever possible?",
+        "options": [
+          { "text": "no", "score": 0 },
+          { "text": "not often", "score": 0 },
+          { "text": "sometimes", "score": 1 },
+          { "text": "often", "score": 1 },
+          { "text": "yes", "score": 1 }
+        ]
+      },
+      {
+        "id": "BDS-14",
+        "text": "Do you struggle with reading comprehension, especially long texts?",
+        "options": [
+          { "text": "no", "score": 0 },
+          { "text": "not often", "score": 0 },
+          { "text": "sometimes", "score": 1 },
+          { "text": "often", "score": 1 },
+          { "text": "yes", "score": 1 }
+        ]
+      },
+      {
+        "id": "BDS-15",
+        "text": "Do you find it difficult to organize thoughts and write coherently?",
+        "options": [
+          { "text": "no", "score": 0 },
+          { "text": "not often", "score": 0 },
+          { "text": "sometimes", "score": 1 },
+          { "text": "often", "score": 1 },
+          { "text": "yes", "score": 1 }
+        ]
+      },
+      {
+        "id": "BDS-16",
+        "text": "Do you experience difficulty learning new languages?",
+        "options": [
+          { "text": "no", "score": 0 },
+          { "text": "not often", "score": 0 },
+          { "text": "sometimes", "score": 1 },
+          { "text": "often", "score": 1 },
+          { "text": "yes", "score": 1 }
+        ]
+      },
+      {
+        "id": "BDS-17",
+        "text": "Do you frequently misread words or skip lines when reading?",
+        "options": [
+          { "text": "no", "score": 0 },
+          { "text": "not often", "score": 0 },
+          { "text": "sometimes", "score": 1 },
+          { "text": "often", "score": 1 },
+          { "text": "yes", "score": 1 }
+        ]
+      },
+      {
+        "id": "BDS-18",
+        "text": "Do you have trouble remembering phone numbers, addresses, or sequences of information?",
+        "options": [
+          { "text": "no", "score": 0 },
+          { "text": "not often", "score": 0 },
+          { "text": "sometimes", "score": 1 },
+          { "text": "often", "score": 1 },
+          { "text": "yes", "score": 1 }
+        ]
+      },
+      {
+        "id": "BDS-19",
+        "text": "Do you struggle with left and right directions or reading maps?",
+        "options": [
+          { "text": "no", "score": 0 },
+          { "text": "not often", "score": 0 },
+          { "text": "sometimes", "score": 1 },
+          { "text": "often", "score": 1 },
+          { "text": "yes", "score": 1 }
+        ]
+      }
+    ]
+  },
+  "Comprehensive Dyslexia Assessment": {
+    "questions": [
+      {
+        "id": "CDS-1",
+        "text": "Difficulty understanding when reading, particularly novels, magazines, newspapers, text-books, poetry.",
+        "type": "general",
+        "options": [
+          { "text": "no", "score": 0 },
+          { "text": "not often", "score": 0 },
+          { "text": "sometimes", "score": 1 },
+          { "text": "often", "score": 1 },
+          { "text": "yes", "score": 1 }
+        ]
+      },
+      {
+        "id": "CDS-2",
+        "text": "Difficulty understanding when listening, particularly jokes, stories, discussions and lectures.",
+        "type": "general",
+        "options": [
+          { "text": "no", "score": 0 },
+          { "text": "not often", "score": 0 },
+          { "text": "sometimes", "score": 1 },
+          { "text": "often", "score": 1 },
+          { "text": "yes", "score": 1 }
+        ]
+      }
+    ]
+  }
+}

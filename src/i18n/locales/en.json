@@ -1,0 +1,121 @@
+{
+  "common": {
+    "login": "Login",
+    "signup": "Sign Up",
+    "getStarted": "Get Started Free",
+    "signIn": "Sign In",
+    "createAccount": "Create Free Account",
+    "startAssessment": "Start Your Assessment"
+  },
+  "navigation": {
+    "brand": "STAAD",
+    "home": "Home",
+    "profile": "Profile",
+    "adhdScreening": "ADHD Screening",
+    "dyslexiaScreening": "Dyslexia Screening",
+    "adminDashboard": "Admin Dashboard",
+    "logout": "Logout",
+    "login": "Login",
+    "signup": "Sign Up"
+  },
+  "hero": {
+    "title": "STAAD",
+    "subtitle": "Screening Tool for ADHD & Dyslexia",
+    "description": "Comprehensive ADHD and Dyslexia assessment platform designed by mental health professionals. Get accurate, evidence-based screening results with detailed analysis and recommendations."
+  },
+  "features": {
+    "title": "Comprehensive Assessment Tools",
+    "subtitle": "Our platform offers professional-grade screening tools for neurodevelopmental conditions",
+    "adhd": {
+      "title": "ADHD Screening",
+      "description": "Comprehensive assessment tools for Attention Deficit Hyperactivity Disorder"
+    },
+    "dyslexia": {
+      "title": "Dyslexia Assessment",
+      "description": "Specialized tests to identify and evaluate dyslexia symptoms"
+    },
+    "reports": {
+      "title": "Detailed Reports",
+      "description": "Get comprehensive reports with actionable insights and recommendations"
+    },
+    "standards": {
+      "title": "Professional Standards",
+      "description": "Tests designed by mental health professionals and researchers"
+    }
+  },
+  "benefits": {
+    "title": "Why Choose Our Platform?",
+    "items": [
+      "Early detection and intervention",
+      "Evidence-based assessment tools",
+      "Secure and confidential testing",
+      "Comprehensive result analysis",
+      "Professional recommendations",
+      "Progress tracking over time"
+    ]
+  },
+  "security": {
+    "title": "Secure & Confidential",
+    "description": "Your data is protected with enterprise-grade security. All assessments are confidential and HIPAA compliant.",
+    "duration": "15-20 min",
+    "professional": "Professional"
+  },
+  "cta": {
+    "title": "Ready to Get Started?",
+    "description": "Join thousands of users who trust our platform for professional neurodevelopmental screening."
+  },
+  "footer": {
+    "description": "Professional neurodevelopmental screening tools for ADHD and Dyslexia assessment.",
+    "platform": "Platform",
+    "assessments": "Assessments",
+    "support": "Support",
+    "links": {
+      "about": "About",
+      "contact": "Contact",
+      "adhdScreening": "ADHD Screening",
+      "dyslexiaAssessment": "Dyslexia Assessment",
+      "testResults": "Test Results",
+      "progressTracking": "Progress Tracking",
+      "helpCenter": "Help Center",
+      "privacyPolicy": "Privacy Policy",
+      "termsOfService": "Terms of Service",
+      "contactSupport": "Contact Support"
+    },
+    "copyright": "© 2025 STAAD. All rights reserved."
+  },
+  "home": {
+    "title": "Screening tool for ADHD and Dyslexia",
+    "description": "Free, confidential assessments for ADHD and Dyslexia to help you better understand your mental health and cognitive patterns.",
+    "adhd": {
+      "title": "ADHD Screening",
+      "description": "Evaluate attention, focus, activity levels, and behavior patterns that may indicate Attention-Deficit/Hyperactivity Disorder.",
+      "button": "Take Assessment"
+    },
+    "dyslexia": {
+      "title": "Dyslexia Screening",
+      "description": "Assess reading, writing, and processing abilities to identify potential signs of Dyslexia and other learning differences.",
+      "button": "Take Assessment"
+    },
+    "whyUse": {
+      "title": "Why Use Our Screening Tools?",
+      "confidential": {
+        "title": "Confidential",
+        "description": "Your information is private and secure"
+      },
+      "evidenceBased": {
+        "title": "Evidence-Based",
+        "description": "Assessments built on clinical research"
+      },
+      "freeAccess": {
+        "title": "Free Access",
+        "description": "No cost to use our screening tools"
+      }
+    },
+    "importantNotice": {
+      "title": "Important Notice",
+      "description": "These screening tools are not meant to replace professional evaluation and diagnosis. If you're concerned about your mental health, please consult with a healthcare professional.",
+      "signupMessage": "Create an account to save your results and track your progress over time.",
+      "signupButton": "Sign Up Now"
+    }
+  }
+} 

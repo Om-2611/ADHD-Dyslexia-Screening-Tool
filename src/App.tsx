@@ -1,10 +1,12 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import { HashRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import { AuthProvider, useAuth } from './components/auth/AuthContext';
 import Layout from './components/layout/Layout';
 
 // Pages
+import Dashboard from './pages/Dashboard';
 import Home from './pages/Home';
+import HomeWithSeparateI18n from './pages/HomeWithSeparateI18n';
 import Login from './pages/auth/Login';
 import Signup from './pages/auth/Signup';
 import ADHDTests from './pages/tests/ADHDTests';
@@ -40,11 +42,17 @@ function App() {
       <Router future={{ v7_relativeSplatPath: true, v7_startTransition: true }}>
         <Routes>
           {/* Public Routes */}
+          <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
           
           {/* Protected Routes */}
           <Route path="/home" element={
+            <ProtectedRoute>
+              <HomeWithSeparateI18n />
+            </ProtectedRoute>
+          } />
+          <Route path="/home-original" element={
             <ProtectedRoute>
               <Home />
             </ProtectedRoute>
@@ -85,9 +93,9 @@ function App() {
             </ProtectedRoute>
           } />
 
-          {/* Default Route - Redirect to login if not authenticated, home if authenticated */}
+          {/* Default Route - Redirect to dashboard if not authenticated, home if authenticated */}
           <Route path="/" element={
-            currentUser ? <Navigate to="/home" /> : <Navigate to="/login" />
+            currentUser ? <Navigate to="/home" /> : <Navigate to="/dashboard" />
           } />
           
           {/* Catch all unknown routes */}

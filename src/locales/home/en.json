@@ -1,0 +1,41 @@
+{
+  "benefits": {
+    "title": "Why Use Our Screening Tool?",
+    "items": [
+      "Early identification of ADHD and Dyslexia symptoms",
+      "Personalized recommendations for next steps",
+      "Multilingual support for diverse users",
+      "Secure and private assessment process",
+      "Easy-to-understand reports for parents and educators"
+    ]
+  },
+  "features": {
+    "adhd": {
+      "title": "ADHD Assessment",
+      "description": "Comprehensive evaluation for attention deficit and hyperactivity symptoms."
+    },
+    "dyslexia": {
+      "title": "Dyslexia Assessment",
+      "description": "Screening for reading and learning difficulties."
+    },
+    "reports": {
+      "title": "Detailed Reports",
+      "description": "Get actionable insights and progress tracking."
+    },
+    "standards": {
+      "title": "Based on Standards",
+      "description": "Uses validated screening criteria and best practices."
+    }
+  },
+  "security": {
+    "title": "Your Data is Safe",
+    "description": "We use secure protocols to protect your information."
+  },
+  "navigation": {
+    "brand": "ADHD & Dyslexia Tool"
+  },
+  "common": {
+    "login": "Login",
+    "startAssessment": "Start Assessment"
+  }
+}

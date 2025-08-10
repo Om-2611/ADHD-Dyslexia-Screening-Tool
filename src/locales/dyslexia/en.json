@@ -1,0 +1,20 @@
+{
+  "basic": {
+    "title": "Basic Dyslexia Screening",
+    "description": "A quick assessment to identify key indicators of dyslexia and reading difficulties.",
+    "button": "Start Assessment",
+    "note": "These assessments are screening tools only and not diagnostic instruments. Results should be discussed with a qualified educational specialist or healthcare professional.",
+    "aboutTitle": "About Dyslexia Screening",
+    "aboutDescription1": "Dyslexia is a learning difference that primarily affects reading and related language-based processing skills. Early identification can lead to more effective support strategies.",
+    "aboutDescription2": "Our screening tests look at various indicators, including reading fluency, word recognition, phonological awareness, and processing speed to help identify potential signs of dyslexia."
+  },
+  "comprehensive": {
+    "title": "Comprehensive Dyslexia Assessment",
+    "description": "An in-depth evaluation covering all aspects of reading, writing, and processing abilities.",
+    "button": "Start Assessment"
+  },
+  "common": {
+    "time": "Time",
+    "questions": "Questions"
+  }
+}

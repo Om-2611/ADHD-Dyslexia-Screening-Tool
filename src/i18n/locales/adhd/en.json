@@ -1,0 +1,51 @@
+{
+  "Predominantly Inattentive": {
+    "behavioralQuestions": [
+      {
+        "id": "PI-1",
+        "text": "Does not pay attention to details or makes careless mistakes, such as in homework",
+        "options": ["Never", "Occasionally", "Often", "Very Often"]
+      },
+      {
+        "id": "PI-2",
+        "text": "Has difficulty sustaining attention to tasks or activities",
+        "options": ["Never", "Occasionally", "Often", "Very Often"]
+      },
+      {
+        "id": "PI-3",
+        "text": "Does not seem to listen when spoken to directly",
+        "options": ["Never", "Occasionally", "Often", "Very Often"]
+      },
+      {
+        "id": "PI-4",
+        "text": "Does not follow through on instruction and fails to finish schoolwork (not due to oppositional behavior or failure to understand)",
+        "options": ["Never", "Occasionally", "Often", "Very Often"]
+      },
+      {
+        "id": "PI-5",
+        "text": "Has difficulty organizing tasks and activities",
+        "options": ["Never", "Occasionally", "Often", "Very Often"]
+      },
+      {
+        "id": "PI-6",
+        "text": "Avoids, dislikes, or is reluctant to engage in tasks that require sustained mental effort",
+        "options": ["Never", "Occasionally", "Often", "Very Often"]
+      },
+      {
+        "id": "PI-7",
+        "text": "Loses things necessary for tasks or activities (school assignments, pencils, or books)",
+        "options": ["Never", "Occasionally", "Often", "Very Often"]
+      },
+      {
+        "id": "PI-8",
+        "text": "Is easily distracted by extraneous stimuli",
+        "options": ["Never", "Occasionally", "Often", "Very Often"]
+      },
+      {
+        "id": "PI-9",
+        "text": "Is forgetful in daily activities",
+        "options": ["Never", "Occasionally", "Often", "Very Often"]
+      }
+    ]
+  }
+}

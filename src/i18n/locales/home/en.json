@@ -1,0 +1,35 @@
+{
+  "title": "Screening tool for ADHD and Dyslexia",
+  "description": "Free, confidential assessments for ADHD and Dyslexia to help you better understand your mental health and cognitive patterns.",
+  "adhd": {
+    "title": "ADHD Screening",
+    "description": "Evaluate attention, focus, activity levels, and behavior patterns that may indicate Attention-Deficit/Hyperactivity Disorder.",
+    "button": "Take Assessment"
+  },
+  "dyslexia": {
+    "title": "Dyslexia Screening",
+    "description": "Assess reading, writing, and processing abilities to identify potential signs of Dyslexia and other learning differences.",
+    "button": "Take Assessment"
+  },
+  "whyUse": {
+    "title": "Why Use Our Screening Tools?",
+    "confidential": {
+      "title": "Confidential",
+      "description": "Your information is private and secure"
+    },
+    "evidenceBased": {
+      "title": "Evidence-Based",
+      "description": "Assessments built on clinical research"
+    },
+    "freeAccess": {
+      "title": "Free Access",
+      "description": "No cost to use our screening tools"
+    }
+  },
+  "importantNotice": {
+    "title": "Important Notice",
+    "description": "These screening tools are not meant to replace professional evaluation and diagnosis. If you're concerned about your mental health, please consult with a healthcare professional.",
+    "signupMessage": "Create an account to save your results and track your progress over time.",
+    "signupButton": "Sign Up Now"
+  }
+}

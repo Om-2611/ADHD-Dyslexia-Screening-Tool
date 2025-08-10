@@ -5,7 +5,8 @@ import Button from '../../components/ui/Button';
 import { ArrowLeft, ArrowRight } from 'lucide-react';
 import { ADHDSubcategory } from '../../services/firebase';
 import { adhdCategories } from '../../data/adhdQuestions';
-import { dyslexiaCategories } from '../../data/dyslexiaQuestions';
+import adhdI18n from '../../i18n/adhdI18n';
+import dyslexiaI18n from '../../i18n/dyslexiaI18n';
 import { db } from '../../config/firebase.ts';
 import { useAuth } from '../../components/auth/AuthContext';
 import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
@@ -38,6 +39,7 @@ interface TestData {
 
 const TestEngine: React.FC = () => {
   const { testType, testId } = useParams<TestParams>();
+  const [currentLanguage, setCurrentLanguage] = useState((testType === 'adhd' ? adhdI18n : dyslexiaI18n).language || 'en');
   const navigate = useNavigate();
   const [loading, setLoading] = useState(true);
   const [testData, setTestData] = useState<TestData | null>(null);
@@ -54,19 +56,27 @@ const TestEngine: React.FC = () => {
   const { currentUser } = useAuth();
 
   useEffect(() => {
+    // Listen for language changes
+    const handleLanguageChanged = (lng: string) => {
+      setCurrentLanguage(lng);
+    };
+    const i18nInstance = testType === 'adhd' ? adhdI18n : dyslexiaI18n;
+    i18nInstance.on('languageChanged', handleLanguageChanged);
+
     const fetchQuestions = async () => {
       if (!testType || !testId) {
-        navigate('/');
+        setTestData(null);
+        setLoading(false);
         return;
       }
 
       try {
-        let questions: TestQuestion[] = [];
-        let title = '';
-        let description = '';
+  let questions: TestQuestion[] = [];
+  let title = '';
+  let description = '';
 
         if (testType === 'adhd') {
-          // Load questions from adhdQuestions.ts
+          // Load questions from adhd language JSON using i18n
           const subcatMap: Record<string, string> = {
             'predominantly_inattentive': 'Predominantly Inattentive',
             'predominantly_hyperactive': 'Predominantly Hyperactive',
@@ -74,69 +84,74 @@ const TestEngine: React.FC = () => {
             'conduct_disorder': 'Conduct Disorder',
             'anxiety_disorder': 'Anxiety Disorder',
           };
-          const cat = adhdCategories.find(c => c.name === subcatMap[testId]);
-          if (cat) {
+          const subcategoryKey = subcatMap[testId];
+          // Get translation resource for current language and subcategory
+          const adhdResource = adhdI18n.getResource(currentLanguage, 'translation', subcategoryKey);
+          if (adhdResource && adhdResource.behavioralQuestions) {
             questions = [
-              ...cat.behavioralQuestions,
-              ...cat.performanceQuestions
-            ].map(q => ({
+              ...adhdResource.behavioralQuestions,
+              ...(adhdResource.performanceQuestions || [])
+            ].map((q: any) => ({
               id: q.id,
               text: q.text,
-              questionType: q.type as 'behavioral' | 'performance',
-              subcategory: testId as ADHDSubcategory,
-              options: q.options.map(opt => ({ value: opt.score, text: opt.text }))
+              questionType: q.type || 'behavioral',
+              subcategory: subcategoryKey,
+              options: (q.options || []).map((opt: any, idx: number) => ({ value: typeof opt.value !== 'undefined' ? opt.value : idx, text: typeof opt === 'string' ? opt : opt.text }))
             }));
+          }
+          // If translation resource is missing or questions are truly empty, show message
+          if (!adhdResource || ((!adhdResource.behavioralQuestions || adhdResource.behavioralQuestions.length === 0) && (!adhdResource.performanceQuestions || adhdResource.performanceQuestions.length === 0))) {
+            setTestData({ title: '', description: '', questions: [] });
+            setLoading(false);
+            return;
           }
 
           // Set title and description based on subcategory
           switch (testId as ADHDSubcategory) {
             case 'predominantly_inattentive':
-              title = 'Inattentive ADHD Assessment';
-              description = 'Evaluate symptoms related to attention, focus, and organization';
+              title = currentLanguage === 'hi' ? 'अवधानहीन ADHD मूल्यांकन' : currentLanguage === 'te' ? 'అవధానహీన ADHD అంచనా' : 'Inattentive ADHD Assessment';
+              description = currentLanguage === 'hi' ? 'ध्यान, फोकस और संगठन से संबंधित लक्षणों का मूल्यांकन करें' : currentLanguage === 'te' ? 'ధ్యానం, ఫోకస్ మరియు సంస్థతో సంబంధిత లక్షణాలను అంచనా వేయండి' : 'Evaluate symptoms related to attention, focus, and organization';
               break;
             case 'predominantly_hyperactive':
-              title = 'Hyperactive ADHD Assessment';
-              description = 'Evaluate symptoms related to hyperactivity and impulsivity';
+              title = currentLanguage === 'hi' ? 'अत्यधिक सक्रिय ADHD मूल्यांकन' : currentLanguage === 'te' ? 'హైపర్‌యాక్టివ్ ADHD అంచనా' : 'Hyperactive ADHD Assessment';
+              description = currentLanguage === 'hi' ? 'अत्यधिक सक्रियता और आवेगशीलता से संबंधित लक्षणों का मूल्यांकन करें' : currentLanguage === 'te' ? 'హైపర్‌యాక్టివిటీ మరియు ఇంపల్సివిటీతో సంబంధిత లక్షణాలను అంచనా వేయండి' : 'Evaluate symptoms related to hyperactivity and impulsivity';
               break;
             case 'oppositional_defiant_disorder':
-              title = 'Oppositional Defiant Assessment';
-              description = 'Evaluate patterns of defiant behavior and authority relationships';
+              title = currentLanguage === 'hi' ? 'विरोधी अवज्ञा मूल्यांकन' : currentLanguage === 'te' ? 'వ్యతిరేక డిఫియంట్ అంచనా' : 'Oppositional Defiant Assessment';
+              description = currentLanguage === 'hi' ? 'विरोधी व्यवहार और अधिकार संबंधों के पैटर्न का मूल्यांकन करें' : currentLanguage === 'te' ? 'వ్యతిరేక ప్రవర్తన మరియు అధికార సంబంధాలను అంచనా వేయండి' : 'Evaluate patterns of defiant behavior and authority relationships';
               break;
             case 'conduct_disorder':
-              title = 'Conduct Assessment';
-              description = 'Evaluate behavioral patterns and rule adherence';
+              title = currentLanguage === 'hi' ? 'आचरण मूल्यांकन' : currentLanguage === 'te' ? 'కండక్ట్ అంచనా' : 'Conduct Assessment';
+              description = currentLanguage === 'hi' ? 'व्यवहार पैटर्न और नियम पालन का मूल्यांकन करें' : currentLanguage === 'te' ? 'ప్రవర్తనా నమూనాలు మరియు నియమాల పాటింపు అంచనా వేయండి' : 'Evaluate behavioral patterns and rule adherence';
               break;
             case 'anxiety_disorder':
-              title = 'Anxiety Assessment';
-              description = 'Evaluate anxiety symptoms and stress responses';
+              title = currentLanguage === 'hi' ? 'चिंता मूल्यांकन' : currentLanguage === 'te' ? 'ఆతంకం అంచనా' : 'Anxiety Assessment';
+              description = currentLanguage === 'hi' ? 'चिंता के लक्षणों और तनाव प्रतिक्रियाओं का मूल्यांकन करें' : currentLanguage === 'te' ? 'ఆతంక లక్షణాలు మరియు ఒత్తిడి ప్రతిక్రియలను అంచనా వేయండి' : 'Evaluate anxiety symptoms and stress responses';
               break;
             default:
-              title = 'ADHD Assessment';
-              description = 'Comprehensive evaluation of ADHD symptoms';
+              title = currentLanguage === 'hi' ? 'ADHD मूल्यांकन' : currentLanguage === 'te' ? 'ADHD అంచనా' : 'ADHD Assessment';
+              description = currentLanguage === 'hi' ? 'ADHD के लक्षणों का व्यापक मूल्यांकन' : currentLanguage === 'te' ? 'ADHD లక్షణాల సమగ్ర అంచనా' : 'Comprehensive evaluation of ADHD symptoms';
           }
         } else if (testType === 'dyslexia') {
-          // Load questions from dyslexiaQuestions.js
           const subcatMap: Record<string, string> = {
             'basic': 'Basic Dyslexia Screening',
             'comprehensive': 'Comprehensive Dyslexia Assessment',
           };
-          const cat = dyslexiaCategories.find(c => c.name === subcatMap[testId]);
-          if (cat) {
-            questions = cat.questions.map(q => ({
+          const subcategoryKey = subcatMap[testId];
+          // Get translation resource for current language and subcategory
+          const dyslexiaResource = dyslexiaI18n.getResource(currentLanguage, 'questions', subcategoryKey);
+          if (dyslexiaResource && dyslexiaResource.questions) {
+            questions = dyslexiaResource.questions.map((q: any) => ({
               id: q.id,
               text: q.text,
-              questionType: 'general', // Or determine a suitable type if needed later
-              subcategory: cat.name, // Use category name as subcategory
-              options: q.options.map(opt => ({ value: opt.score, text: opt.text }))
+              questionType: 'general',
+              subcategory: subcategoryKey,
+              options: q.options.map((opt: any) => ({ value: opt.score, text: opt.text }))
             }));
-            title = cat.name;
-            description = testId === 'basic' ? 'Basic screening questions for dyslexia.' : 'Comprehensive assessment questions for dyslexia.'; // Example descriptions
           }
-        }
 
-        if (questions.length === 0) {
-          navigate('/');
-          return;
+          title = subcategoryKey;
+          description = testId === 'basic' ? 'Basic screening questions for dyslexia.' : 'Comprehensive assessment questions for dyslexia.';
         }
 
         setTestData({
@@ -152,12 +167,26 @@ const TestEngine: React.FC = () => {
     };
 
     fetchQuestions();
-  }, [testType, testId, navigate]);
+
+    // Cleanup listener on unmount
+    return () => {
+      const i18nInstance = testType === 'adhd' ? adhdI18n : dyslexiaI18n;
+      i18nInstance.off('languageChanged', handleLanguageChanged);
+    };
+  }, [testType, testId, navigate, currentLanguage]);
 
   if (loading || !testData) {
     return (
       <div className="flex justify-center items-center h-64">
         <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-500"></div>
+      </div>
+    );
+  }
+
+  if (testData && testData.questions.length === 0) {
+    return (
+      <div className="flex justify-center items-center h-64">
+        <div className="text-red-500 text-lg">No questions available for this category/language.</div>
       </div>
     );
   }
@@ -194,60 +223,28 @@ const TestEngine: React.FC = () => {
     const endTime = new Date();
     const duration = Math.floor((endTime.getTime() - startTime.getTime()) / 1000); // Duration in seconds
 
-    try {
-      // Only attempt to save to Firebase if currentUser exists
-      if (currentUser) {
-        const testResultsCollectionRef = collection(db, 'testResults');
-        await addDoc(testResultsCollectionRef, {
-          userId: currentUser.uid,
-          testType,
-          testId,
-          testTitle: testData.title,
-          duration,
-          answers,
-          timestamp: serverTimestamp(),
-          questionTexts: Object.fromEntries(
-            Object.entries(answers).map(([key, answer]) => [
-              key,
-              {
-                questionText: answer.questionText,
-                answerText: answer.text,
-                value: answer.value,
-                subcategory: answer.subcategory,
-                questionType: answer.questionType
-              }
-            ])
-          )
-        });
+    // Log score to console
+    const totalScore = Object.values(answers).reduce((sum, ans) => sum + ans.value, 0);
+    console.log('Test submitted:', {
+      testType,
+      testId,
+      testTitle: testData?.title,
+      duration,
+      answers,
+      totalScore
+    });
 
-        // Update user's test count
-        await updateUserTestCount(currentUser.uid);
+    // Navigate to results page
+    navigate('/results', {
+      state: {
+        testType,
+        testId,
+        testTitle: testData?.title,
+        duration,
+        answers,
+        totalScore
       }
-
-      // Navigate to results page
-      navigate('/results', {
-        state: {
-          testType,
-          testId,
-          testTitle: testData.title,
-          duration,
-          answers,
-        }
-      });
-    } catch (error) {
-      console.error('Error saving test results:', error);
-      // Still navigate to results page even if save fails
-      navigate('/results', {
-        state: {
-          testType,
-          testId,
-          testTitle: testData.title,
-          duration,
-          answers,
-          error: 'Failed to save results.'
-        }
-      });
-    }
+    });
   };
 
   return (
