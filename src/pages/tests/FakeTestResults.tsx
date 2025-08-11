@@ -40,25 +40,142 @@ const TestResults: React.FC = () => {
   let statusColorClass = 'text-red-600';
 
   if (state && state.answers && testType === 'adhd') {
-    console.log(`Running ADHD scoring logic for subcategory: ${testId}`);
-    const answers = state.answers;
+    console.log('=== SCORING DEBUG START ===');
+    console.log(`Test Type: ${testType}`);
+    console.log(`Test ID (Subcategory): ${testId}`);
+    console.log('Test Title:', state.testTitle);
+    
     let totalBehavioralScore = 0;
     let totalPerformanceScore = 0;
 
-    // Iterate through answers to calculate scores
-    Object.values(answers).forEach(answer => {
-      // Check if the answer belongs to the current subcategory
-      if (answer.subcategory === testId) {
-         if (answer.questionType === 'behavioral') {
-            // Behavioral questions: score 1 for 'Often' or 'Very Often'
-            if (answer.text === 'Often' || answer.text === 'Very Often') {
-              totalBehavioralScore += 1;
-            }
-          } else if (answer.questionType === 'performance') {
-            // Performance questions: sum the score values (1 for problematic, 0 for others)
-            totalPerformanceScore += answer.value; // Summing the score value
-          }
-      }
+    // Define score mapping for different languages
+    const scoreMap: { [key: string]: number } = {
+      // English scores
+      'Never': 0,
+      'Occasionally': 0,
+      'Often': 1,
+      'Very Often': 1,
+      // Hindi scores
+      'कभी नहीं': 0,
+      'कभी-कभार': 0,
+      'अक्सर': 1,
+      'बहुत अक्सर': 1,
+      // Telugu scores
+      'ఎప్పుడూ కాదు': 0,
+      'అప్పుడప్పుడు': 0,
+      'తరచుగా': 1,
+      'చాలా తరచుగా': 1
+    };
+
+    // Log the score map for verification
+    console.log('Score Map:', scoreMap);
+
+    console.log('Raw answers received:', state.answers);
+    
+    // Debug: Show all unique subcategories in the data
+    const allSubcategories = [...new Set(Object.values(state.answers).map(answer => answer.subcategory))];
+    console.log('🔍 All subcategories found in answers:', allSubcategories);
+    console.log('🎯 Expected subcategory (testId):', testId);
+    console.log('🔍 All question types found:', [...new Set(Object.values(state.answers).map(answer => answer.questionType))]);
+    
+    // Create a mapping from testId to actual subcategory names
+    const subcategoryMapping: { [key: string]: string } = {
+      // ADHD Subcategories
+      'predominantly_inattentive': 'Inattentive ADHD',
+      'predominantly_hyperactive': 'Hyperactive ADHD', 
+      'oppositional_defiant_disorder': 'Oppositional Defiant Disorder',
+      'conduct_disorder': 'Conduct Disorder',
+      'anxiety_disorder': 'Anxiety Disorder',
+      'executive_function': 'Executive Function',
+      'social_skills': 'Social Skills',
+      'emotional_regulation': 'Emotional Regulation',
+      // Dyslexia Subcategories
+      'phonological_awareness': 'Phonological Awareness',
+      'reading_fluency': 'Reading Fluency',
+      'comprehension': 'Comprehension',
+      'spelling': 'Spelling',
+      'writing_skills': 'Writing Skills',
+      'visual_processing': 'Visual Processing'
+    };
+    
+    const actualSubcategory = subcategoryMapping[testId || ''] || testId || '';
+    console.log('🔄 Mapped subcategory:', actualSubcategory);
+    
+    // Filter and type answers for the current subcategory
+    const behavioralAnswers = Object.values(state.answers)
+      .filter((answer): answer is Answer => {
+        const isMatch = answer.questionType === 'behavioral' && answer.subcategory === actualSubcategory;
+        console.log('Filtering answer:', {
+          answer,
+          isMatch,
+          questionType: answer.questionType,
+          subcategory: answer.subcategory,
+          expectedSubcategory: actualSubcategory
+        });
+        return isMatch;
+      });
+
+    const performanceAnswers = Object.values(state.answers)
+      .filter((answer): answer is Answer => 
+        answer.questionType === 'performance' && answer.subcategory === actualSubcategory
+      );
+    
+    console.log('Processing test:', {
+      testType,
+      testId,
+      behavioralAnswersCount: behavioralAnswers.length,
+      performanceAnswersCount: performanceAnswers.length
+    });
+    
+    console.log('Behavioral answers:', behavioralAnswers.map(answer => ({
+      text: answer.text,
+      questionText: answer.questionText,
+      subcategory: answer.subcategory
+    })));
+    
+    console.log('Performance answers:', performanceAnswers.map(answer => ({
+      text: answer.text,
+      value: answer.value,
+      subcategory: answer.subcategory
+    })));
+
+    // Process behavioral answers
+    behavioralAnswers.forEach(answer => {
+      // Behavioral questions: score based on frequency
+      console.log('Processing answer text:', JSON.stringify(answer.text)); // Log exact text with quotes
+      console.log('Score map keys:', Object.keys(scoreMap).map(k => JSON.stringify(k))); // Log all possible keys
+      
+      const score = scoreMap[answer.text] || 0;
+      totalBehavioralScore += score;
+      
+      // Debug logging for behavioral questions
+      console.log('Scoring behavioral answer:', {
+        text: answer.text,
+        textJSON: JSON.stringify(answer.text),
+        score: score,
+        questionText: answer.questionText,
+        mappedScore: scoreMap[answer.text],
+        isInScoreMap: answer.text in scoreMap,
+        exactTextLength: answer.text?.length,
+        possibleScores: Object.keys(scoreMap),
+        scoreMapEntry: Object.entries(scoreMap).find(([key]) => key === answer.text),
+        // Check for whitespace or hidden characters
+        hasLeadingSpace: answer.text.startsWith(' '),
+        hasTrailingSpace: answer.text.endsWith(' '),
+        charCodes: Array.from(answer.text).map(c => c.charCodeAt(0))
+      });
+    });
+
+    // Process performance answers
+    performanceAnswers.forEach(answer => {
+      // Performance questions: use the normalized score value
+      totalPerformanceScore += answer.value;
+      
+      // Debug logging for performance questions
+      console.log('Scoring performance answer:', {
+        value: answer.value,
+        questionText: answer.questionText
+      });
     });
 
     console.log('Total Behavioral Score:', totalBehavioralScore);
@@ -69,6 +186,7 @@ const TestResults: React.FC = () => {
 
     // Determine behavioral threshold based on subcategory
     switch (testId) {
+      // ADHD Subcategories
       case 'predominantly_inattentive':
         behavioralThreshold = 6;
         subcategoryName = 'Inattentive ADHD';
@@ -88,6 +206,43 @@ const TestResults: React.FC = () => {
       case 'anxiety_disorder':
         behavioralThreshold = 3;
         subcategoryName = 'Anxiety Disorder';
+        break;
+      case 'executive_function':
+        behavioralThreshold = 4;
+        subcategoryName = 'Executive Function';
+        break;
+      case 'social_skills':
+        behavioralThreshold = 3;
+        subcategoryName = 'Social Skills';
+        break;
+      case 'emotional_regulation':
+        behavioralThreshold = 4;
+        subcategoryName = 'Emotional Regulation';
+        break;
+      // Dyslexia Subcategories
+      case 'phonological_awareness':
+        behavioralThreshold = 3;
+        subcategoryName = 'Phonological Awareness';
+        break;
+      case 'reading_fluency':
+        behavioralThreshold = 3;
+        subcategoryName = 'Reading Fluency';
+        break;
+      case 'comprehension':
+        behavioralThreshold = 3;
+        subcategoryName = 'Comprehension';
+        break;
+      case 'spelling':
+        behavioralThreshold = 3;
+        subcategoryName = 'Spelling';
+        break;
+      case 'writing_skills':
+        behavioralThreshold = 3;
+        subcategoryName = 'Writing Skills';
+        break;
+      case 'visual_processing':
+        behavioralThreshold = 3;
+        subcategoryName = 'Visual Processing';
         break;
       default:
         // Handle unknown subcategory or display a generic message
