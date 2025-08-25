@@ -1,0 +1,230 @@
+import React, { useRef } from 'react';
+import { useParams, useLocation } from 'react-router-dom';
+import Card from '../../components/ui/Card';
+import Button from '../../components/ui/Button';
+import jsPDF from 'jspdf';
+
+interface Answer {
+  value: number;
+  text: string;
+  questionType: 'behavioral' | 'performance' | 'general';
+  subcategory: string;
+  questionText?: string;
+  questionId: string;
+}
+
+interface ProcessedAnswer extends Answer {
+  score?: number;
+}
+
+interface LocationState {
+  testType: string;
+  testId: string;
+  testTitle: string;
+  duration: number;
+  answers: Record<string, Answer>;
+}
+
+const TestResults: React.FC = () => {
+  const { testType: paramsTestType, testId: paramsTestId } = useParams<{ testType: string; testId: string }>();
+  const location = useLocation();
+  const state = location.state as LocationState;
+  const resultRef = useRef<HTMLDivElement>(null);
+
+  // Use testType and testId from state, fallback to params if state is not available
+  const testType = state?.testType || paramsTestType;
+  const testId = state?.testId || paramsTestId;
+
+  let resultMessage = 'Could not load test results.';
+  let resultStatus = 'Error';
+  let statusColorClass = 'text-red-600';
+
+  const calculateScores = (answers: Record<string, Answer>, subcategoryId: string) => {
+    // Define score mapping for different languages
+    const scoreMap: { [key: string]: number } = {
+      // English scores
+      'Never': 0,
+      'Occasionally': 0,
+      'Often': 1,
+      'Very Often': 1,
+      // Hindi scores
+      'कभी नहीं': 0,
+      'कभी-कभार': 0,
+      'अक्सर': 1,
+      'बहुत अक्सर': 1,
+      // Telugu scores
+      'ఎప్పుడూ కాదు': 0,
+      'అప్పుడప్పుడు': 0,
+      'తరచుగా': 1,
+      'చాలా తరచుగా': 1
+    };
+
+    console.log('=== SCORING DEBUG START ===');
+    console.log('Score Map:', scoreMap);
+    console.log('All available answers:', Object.entries(answers));
+    
+    // Process and validate answers
+    const processedAnswers = Object.entries(answers).map(([key, answer]): ProcessedAnswer => {
+      let score: number;
+      
+      if (answer.questionType === 'behavioral') {
+        score = scoreMap[answer.text];
+        if (score === undefined) {
+          console.warn(`⚠️ No score mapping found for behavioral answer: "${answer.text}"`);
+          console.warn('Available score map keys:', Object.keys(scoreMap));
+          score = 0; // Default to 0 for unmapped behavioral answers
+        }
+      } else {
+        score = answer.value;
+      }
+      
+      return {
+        ...answer,
+        questionId: key,
+        score: score
+      };
+    });
+
+    // Filter answers for current subcategory
+    const subcategoryAnswers = processedAnswers.filter(answer => answer.subcategory === subcategoryId);
+    
+    console.log('Debug Info:', {
+      totalAnswers: processedAnswers.length,
+      subcategoryAnswers: subcategoryAnswers.length,
+      subcategoryId,
+      allSubcategories: [...new Set(processedAnswers.map(a => a.subcategory))]
+    });
+
+    // Calculate scores
+    const scores = subcategoryAnswers.reduce((acc, answer) => {
+      console.log('Processing answer:', {
+        id: answer.questionId,
+        type: answer.questionType,
+        text: answer.text,
+        value: answer.value,
+        score: answer.score,
+        validScore: answer.questionType === 'behavioral' ? (answer.text in scoreMap) : 'N/A (performance)',
+        subcategory: answer.subcategory
+      });
+
+      if (answer.questionType === 'behavioral') {
+        const scoreToAdd = answer.score !== undefined ? answer.score : 0;
+        acc.behavioral += scoreToAdd;
+        console.log(`Added ${scoreToAdd} to behavioral score (total: ${acc.behavioral})`);
+      } else if (answer.questionType === 'performance') {
+        acc.performance += answer.value;
+        console.log(`Added ${answer.value} to performance score (total: ${acc.performance})`);
+      }
+      return acc;
+    }, { behavioral: 0, performance: 0 });
+
+    console.log('Final Scores:', scores);
+    console.log('=== SCORING DEBUG END ===');
+
+    return scores;
+  };
+
+  if (state && state.answers && testType === 'adhd') {
+    const scores = calculateScores(state.answers, testId);
+    
+    let behavioralThreshold = 0;
+    let subcategoryName = '';
+
+    // Determine behavioral threshold based on subcategory
+    switch (testId) {
+      case 'predominantly_inattentive':
+        behavioralThreshold = 6;
+        subcategoryName = 'Inattentive ADHD';
+        break;
+      case 'predominantly_hyperactive':
+        behavioralThreshold = 6;
+        subcategoryName = 'Hyperactive ADHD';
+        break;
+      case 'oppositional_defiant_disorder':
+        behavioralThreshold = 4;
+        subcategoryName = 'Oppositional Defiant Disorder';
+        break;
+      case 'conduct_disorder':
+        behavioralThreshold = 3;
+        subcategoryName = 'Conduct Disorder';
+        break;
+      case 'anxiety_disorder':
+        behavioralThreshold = 3;
+        subcategoryName = 'Anxiety Disorder';
+        break;
+      default:
+        resultMessage = `Results for ${state?.testTitle || 'Unknown Test'}`;
+        resultStatus = 'Result Available';
+        statusColorClass = 'text-gray-800';
+        return;
+    }
+
+    console.log('Threshold Check:', {
+      behavioralThreshold,
+      behavioralScore: scores.behavioral,
+      performanceScore: scores.performance
+    });
+
+    // Apply scoring logic
+    if (scores.behavioral >= behavioralThreshold || scores.performance >= 1) {
+      resultMessage = `Based on your responses, you show signs consistent with ${subcategoryName}.`;
+      resultStatus = `Positive for ${subcategoryName}`;
+      statusColorClass = 'text-green-600';
+    } else {
+      resultMessage = `Based on your responses, you do not show signs consistent with ${subcategoryName}.`;
+      resultStatus = `Negative for ${subcategoryName}`;
+      statusColorClass = 'text-red-600';
+    }
+  }
+
+  const handleDownloadResult = async () => {
+    if (!resultRef.current) return;
+    try {
+      const pdf = new jsPDF('p', 'mm', 'a4');
+      const pdfWidth = pdf.internal.pageSize.getWidth();
+      
+      // Add header
+      pdf.setFontSize(20);
+      pdf.text('Test Results', pdfWidth / 2, 20, { align: 'center' });
+      
+      // Add test details
+      pdf.setFontSize(12);
+      pdf.text(`Test Type: ${testType}`, 20, 40);
+      pdf.text(`Test Title: ${state?.testTitle || 'Unknown'}`, 20, 50);
+      
+      // Add result status and message
+      pdf.setFontSize(16);
+      pdf.text(resultStatus, pdfWidth / 2, 70, { align: 'center' });
+      pdf.setFontSize(12);
+      pdf.text(resultMessage, pdfWidth / 2, 90, { align: 'center' });
+      
+      pdf.save(`test-result-${testType}-${testId}.pdf`);
+    } catch (error) {
+      console.error('Error generating PDF:', error);
+      alert('Error generating PDF. Please try again.');
+    }
+  };
+
+  return (
+    <div className="flex justify-center items-center min-h-screen bg-gray-100 p-4">
+      <Card className="p-8 w-full max-w-md text-center shadow-lg rounded-lg">
+        <div ref={resultRef}>
+          <h2 className="text-3xl font-bold mb-6 text-gray-800">Test Results</h2>
+          <div className={`text-2xl font-semibold mb-4 ${statusColorClass}`}>
+            {resultStatus}
+          </div>
+          <p className="text-gray-700 mb-8 leading-relaxed">{resultMessage}</p>
+        </div>
+        <Button
+          onClick={handleDownloadResult}
+          variant="primary"
+          className="w-full"
+        >
+          Download Result
+        </Button>
+      </Card>
+    </div>
+  );
+};
+
+export default TestResults;
